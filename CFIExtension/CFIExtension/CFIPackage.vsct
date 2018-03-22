@@ -391,29 +391,7 @@
           <MenuText>Open changes.lst (MRP)</MenuText>
           <CommandName>Open changes.lst (MRP)</CommandName>
         </Strings>
-      </Button>
-      <Button guid="guidCFIPackageCmdSet" id="OpenFileFactsCommandId" priority="0x0100" type="Button">
-        <Parent guid="guidCFIPackageCmdSet" id="ToolbarOpenFileGroup" />
-        <Icon guid="guidImagesOpenFile" id="bmpOpenTxtFile" />
-        <CommandFlag>IconAndText</CommandFlag>  
-        <Strings>
-          <ButtonText>facts.txt</ButtonText>
-          <ToolTipText>Open facts.txt</ToolTipText>
-          <MenuText>Open facts.txt</MenuText>
-          <CommandName>Open facts.txt</CommandName>
-        </Strings>
-      </Button>
-      <Button guid="guidCFIPackageCmdSet" id="GoToIconsCommandId" priority="0x0100" type="Button">
-        <Parent guid="guidCFIPackageCmdSet" id="ToolbarGoToLocationGroup" />
-        <Icon guid="guidImagesGoToIcons" id="bmpGoToIcons" />
-        <CommandFlag>IconAndText</CommandFlag>  
-        <Strings>
-          <ButtonText>Icons</ButtonText>
-          <ToolTipText>Go to icons location</ToolTipText>
-          <MenuText>Go to icons location</MenuText>
-          <CommandName>Go to icons location</CommandName>
-        </Strings>
-      </Button>      
+      </Button>    
     </Buttons>
 
     <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->

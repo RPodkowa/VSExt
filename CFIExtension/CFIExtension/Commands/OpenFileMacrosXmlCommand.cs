@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel.Design;
 using System.Globalization;
+using CFIExtension.Logic;
+using EnvDTE;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
@@ -86,18 +88,9 @@ namespace CFIExtension
         /// <param name="sender">Event sender.</param>
         /// <param name="e">Event args.</param>
         private void MenuItemCallback(object sender, EventArgs e)
-        {
-            string message = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);
-            string title = "OpenMacrosXmlCommand1";
-
-            // Show a message box to prove we were here
-            VsShellUtilities.ShowMessageBox(
-                this.ServiceProvider,
-                message,
-                title,
-                OLEMSGICON.OLEMSGICON_INFO,
-                OLEMSGBUTTON.OLEMSGBUTTON_OK,
-                OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
+        {            
+            var fh = new FileHelper("macros.xml", package);
+            fh.OpenNotepad();
         }
     }
 }

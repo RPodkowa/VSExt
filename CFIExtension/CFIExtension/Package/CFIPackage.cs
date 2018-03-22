@@ -10,6 +10,7 @@ using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.Win32;
+using System.IO;
 
 namespace CFIExtension
 {
@@ -35,8 +36,7 @@ namespace CFIExtension
     [Guid(CFIPackage.PackageGuidString)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
     [ProvideMenuResource("Menus.ctmenu", 1)]
-    [ProvideOptionPage(typeof(OptionPageGrid), "My Category", "My Grid Page", 0, 0, true)]
-    [ProvideOptionPage(typeof(OptionPageCustom), "My Category", "My Custom Page", 0, 0, true)]
+    [ProvideOptionPage(typeof(OptionPageGrid), "CFI", "General", 0, 0, true)]
     public sealed class CFIPackage : Package
     {
         /// <summary>
@@ -55,13 +55,24 @@ namespace CFIExtension
             // initialization is the Initialize method.
         }
 
-        public int OptionInteger
+        private OptionPageGrid getOptionPageGrid()
         {
-            get
-            {
-                OptionPageGrid page = (OptionPageGrid)GetDialogPage(typeof(OptionPageGrid));
-                return page.OptionInteger;
-            }
+            return (OptionPageGrid)GetDialogPage(typeof(OptionPageGrid));
+        }
+
+        public string OptionNotepadPath
+        {
+            get { return getOptionPageGrid().NotepadPath; }
+        }
+
+        public string OptionVendoMasterName
+        {
+            get { return getOptionPageGrid().VendoMasterName; }
+        }
+
+        public string OptionToolsName
+        {
+            get { return getOptionPageGrid().ToolsName; }
         }
 
         #region Package Members
@@ -95,29 +106,36 @@ namespace CFIExtension
     }
 
     public class OptionPageGrid : DialogPage
-    {
-        private int optionInt = 256;
-
-        [Category("My Category")]
-        [DisplayName("My Integer Option")]
-        [Description("My integer option")]
-        public int OptionInteger
+    {        
+        private string notepadPath = @"C:\Windows\System32\notepad.exe";
+        private string vendoMasterName = "Master";     
+        private string toolsName = "#Tools";
+        
+        [Category("Paths")]
+        [DisplayName("Notepad")]
+        [Description("Sciezka do notatnika")]
+        public string NotepadPath
         {
-            get { return optionInt; }
-            set { optionInt = value; }
+            get { return notepadPath; }
+            set { notepadPath = value; }
+        }
+
+        [Category("Directories")]
+        [DisplayName("Vendo master")]
+        [Description("Nazwa katalogu z glownym projektem")]
+        public string VendoMasterName
+        {
+            get { return vendoMasterName; }
+            set { vendoMasterName = value; }
+        }
+        
+        [Category("Directories")]
+        [DisplayName("Tools")]
+        [Description("Nazwa katalogu z narzedziami")]
+        public string ToolsName
+        {
+            get { return toolsName; }
+            set { toolsName = value; }
         }
     }
-
-    [Guid("00000000-0000-0000-0000-000000000000")]
-    public class OptionPageCustom : DialogPage
-    {
-        private string optionValue = "alpha";
-
-        public string OptionString
-        {
-            get { return optionValue; }
-            set { optionValue = value; }
-        }
-    }
-
 }

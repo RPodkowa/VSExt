@@ -12,10 +12,12 @@ namespace CFIExtension.Logic
         private const string GenerateString = "GENUUIDL";
         private const string NewLineString = "\r\n";
         private string fileName;
-
+        private string mainCodePart;
+        
         public GuidGenerator(string fileName)
         {
             this.fileName = fileName;
+            mainCodePart = "\\Amag\\";
         }
 
         public void TryGenerate()
@@ -134,9 +136,9 @@ namespace CFIExtension.Logic
             string ret = "UU";
 
             // Projekt
-            string projName = fileName;
-            var startIndex = projName.IndexOf("\\Amag\\");
-            startIndex += "\\Amag\\".Length;
+            string projName = fileName;            
+            var startIndex = projName.IndexOf(mainCodePart);
+            startIndex += mainCodePart.Length;
             var stopIndex = projName.IndexOf("\\", startIndex);
             projName = projName.Substring(startIndex, stopIndex - startIndex);
             ret += projName;

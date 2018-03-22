@@ -58,6 +58,7 @@
     <Compile Include="Commands\GuidGenerateCommand.cs" />
     <Compile Include="Commands\GoToIconsCommand.cs" />
     <Compile Include="Logic\GuidGenerator.cs" />
+    <Compile Include="Logic\FileHelper.cs" />
     <Compile Include="Package\CFIPackage.cs" />
     <Compile Include="Commands\CopyReleaseCommand.cs" />
     <Compile Include="Commands\OpenFileChangesLstCommand.cs" />

@@ -90,7 +90,7 @@ namespace CFIExtension
         private void MenuItemCallback(object sender, EventArgs e)
         {
             EnvDTE80.DTE2 applicationObject = ServiceProvider.GetService(typeof(DTE)) as EnvDTE80.DTE2;
-            
+                        
             var generator = new GuidGenerator(applicationObject.ActiveDocument.FullName);
             generator.TryGenerate();
         }
