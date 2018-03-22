@@ -28,8 +28,8 @@ namespace CFIExtension.Logic
                 saveFile = true;
                 text = GetNewFileText(text);
             }
-
-            if (saveFile) File.WriteAllText(fileName, text);
+                        
+            if (saveFile) File.WriteAllText(fileName, text, Encoding.UTF8);            
         }
 
         private bool HasStringToGenerate(string txt)
