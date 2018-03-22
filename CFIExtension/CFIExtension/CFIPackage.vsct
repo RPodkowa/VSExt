@@ -1,0 +1,365 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!--  This is the file that defines the actual layout and type of the commands.
+        It is divided in different sections (e.g. command definition, command
+        placement, ...), with each defining a specific set of properties.
+        See the comment before each section for more details about how to
+        use it. -->
+
+  <!--  The VSCT compiler (the tool that translates this file into the binary
+        format that VisualStudio will consume) has the ability to run a preprocessor
+        on the vsct file; this preprocessor is (usually) the C++ preprocessor, so
+        it is possible to define includes and macros with the same syntax used
+        in C++ files. Using this ability of the compiler here, we include some files
+        defining some of the constants that we will use inside the file. -->
+
+  <!--This is the file that defines the IDs for all the commands exposed by VisualStudio. -->
+  <Extern href="stdidcmd.h" />
+
+  <!--This header contains the command ids for the menus provided by the shell. -->
+  <Extern href="vsshlids.h" />
+
+  <!--The Commands section is where commands, menus, and menu groups are defined.
+      This section uses a Guid to identify the package that provides the command defined inside it. -->
+  <Commands package="guidCFIPackage">
+    <!-- Inside this section we have different sub-sections: one for the menus, another
+    for the menu groups, one for the buttons (the actual commands), one for the combos
+    and the last one for the bitmaps used. Each element is identified by a command id that
+    is a unique pair of guid and numeric identifier; the guid part of the identifier is usually
+    called "command set" and is used to group different command inside a logically related
+    group; your package should define its own command set in order to avoid collisions
+    with command ids defined by other packages. -->
+
+    <!-- In this section you can define new menu groups. A menu group is a container for
+         other menus or buttons (commands); from a visual point of view you can see the
+         group as the part of a menu contained between two lines. The parent of a group
+         must be a menu. -->
+
+    <Menus>
+      <Menu guid="guidCFIPackageCmdSet" id="TopLevelMenu" priority="0x700" type="Menu">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS" />
+        <Strings>
+          <ButtonText>CFI</ButtonText>
+          <CommandName>CFI</CommandName>
+        </Strings>
+      </Menu>
+    </Menus>
+    
+    <Groups>
+      <Group guid="guidCFIPackageCmdSet" id="CopyGroup" priority="0x0600">
+        <Parent guid="guidCFIPackageCmdSet" id="TopLevelMenu" />
+      </Group>
+      <Group guid="guidCFIPackageCmdSet" id="RunGroup" priority="0x0601">
+        <Parent guid="guidCFIPackageCmdSet" id="TopLevelMenu" />
+      </Group>
+      <Group guid="guidCFIPackageCmdSet" id="CopyRunGroup" priority="0x0602">
+        <Parent guid="guidCFIPackageCmdSet" id="TopLevelMenu" />
+      </Group>
+      <Group guid="guidCFIPackageCmdSet" id="UpdateAmagDataGroup" priority="0x0603">
+        <Parent guid="guidCFIPackageCmdSet" id="TopLevelMenu" />
+      </Group>
+      <Group guid="guidCFIPackageCmdSet" id="UpdateEnumsGroup" priority="0x0604">
+        <Parent guid="guidCFIPackageCmdSet" id="TopLevelMenu" />
+      </Group>
+      <Group guid="guidCFIPackageCmdSet" id="OpenFileGroup" priority="0x0605">
+        <Parent guid="guidCFIPackageCmdSet" id="TopLevelMenu" />
+      </Group>
+      <Group guid="guidCFIPackageCmdSet" id="GoToLocationGroup" priority="0x0606">
+        <Parent guid="guidCFIPackageCmdSet" id="TopLevelMenu" />
+      </Group>
+      <Group guid="guidCFIPackageCmdSet" id="AboutGroup" priority="0x0700">
+        <Parent guid="guidCFIPackageCmdSet" id="TopLevelMenu" />
+      </Group>      
+      <Group guid="guidCFIPackageContextMenuSet" id="ContextMenuGroup" priority="0x0001">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN" />
+      </Group>
+    </Groups>
+
+    <!--Buttons section. -->
+    <!--This section defines the elements the user can interact with, like a menu command or a button
+        or combo box in a toolbar. -->
+    <Buttons>
+      <!--To define a menu group you have to specify its ID, the parent menu and its display priority.
+          The command is visible and enabled by default. If you need to change the visibility, status, etc, you can use
+          the CommandFlag node.
+          You can add more than one CommandFlag node e.g.:
+              <CommandFlag>DefaultInvisible</CommandFlag>
+              <CommandFlag>DynamicVisibility</CommandFlag>
+          If you do not want an image next to your command, remove the Icon node /> -->
+      <Button guid="guidCFIPackageCmdSet" id="CopyReleaseCommandId" priority="0x0100" type="Button">
+        <Parent guid="guidCFIPackageCmdSet" id="CopyGroup" />
+        <Icon guid="guidImagesCopyRelease" id="bmpCopyRelease" />
+        <Strings>
+          <ButtonText>CopyRelease</ButtonText>
+          <ToolTipText>Copy Release</ToolTipText>
+          <MenuText>Copy Release</MenuText>
+          <CommandName>CopyRelease</CommandName>
+        </Strings>
+      </Button>
+      <Button guid="guidCFIPackageCmdSet" id="RunNormalCommandId" priority="0x0100" type="Button">
+        <Parent guid="guidCFIPackageCmdSet" id="RunGroup" />
+        <Icon guid="guidImagesRunNormal" id="bmpVendoNormal" />
+        <Strings>
+          <ButtonText>RunNormal</ButtonText>
+          <ToolTipText>Run Vendo in normal mode</ToolTipText>
+          <MenuText>Run Normal</MenuText>
+          <CommandName>RunNormal</CommandName>
+        </Strings>
+      </Button>
+      <Button guid="guidCFIPackageCmdSet" id="RunReaderCommandId" priority="0x0100" type="Button">
+        <Parent guid="guidCFIPackageCmdSet" id="RunGroup" />
+        <Icon guid="guidImagesRunReader" id="bmpVendoReader" />
+        <Strings>
+          <ButtonText>RunReader</ButtonText>
+          <ToolTipText>Run Vendo in reader mode</ToolTipText>
+          <MenuText>Run Reader</MenuText>
+          <CommandName>RunReader</CommandName>
+        </Strings>
+      </Button>
+      <Button guid="guidCFIPackageCmdSet" id="RunRcpCommandId" priority="0x0100" type="Button">
+        <Parent guid="guidCFIPackageCmdSet" id="RunGroup" />
+        <Icon guid="guidImagesRunRcp" id="bmpVendoRcp" />
+        <Strings>
+          <ButtonText>RunRCP</ButtonText>
+          <ToolTipText>Run Vendo in RCP mode</ToolTipText>
+          <MenuText>Run RCP</MenuText>
+          <CommandName>RunRCP</CommandName>
+        </Strings>
+      </Button>
+      <Button guid="guidCFIPackageCmdSet" id="CopyRunNormalCommandId" priority="0x0100" type="Button">
+        <Parent guid="guidCFIPackageCmdSet" id="CopyRunGroup" />
+        <Icon guid="guidImagesCopyRunNormal" id="bmpCopyRunVendoNormal" />
+        <Strings>
+          <ButtonText>CopyRunNormal</ButtonText>
+          <ToolTipText>Copy Release and run Vendo in normal mode</ToolTipText>
+          <MenuText>Copy and run Normal</MenuText>
+          <CommandName>CopyRunNormal</CommandName>
+        </Strings>        
+      </Button>
+      <Button guid="guidCFIPackageCmdSet" id="CopyRunReaderCommandId" priority="0x0100" type="Button">
+        <Parent guid="guidCFIPackageCmdSet" id="CopyRunGroup" />
+        <Icon guid="guidImagesCopyRunReader" id="bmpCopyRunVendoReader" />
+        <Strings>
+          <ButtonText>CopyRunReader</ButtonText>
+          <ToolTipText>Copy Release and run Vendo in reader mode</ToolTipText>
+          <MenuText>Copy and run Reader</MenuText>
+          <CommandName>CopyRunReader</CommandName>
+        </Strings>
+      </Button>
+      <Button guid="guidCFIPackageCmdSet" id="CopyRunRcpCommandId" priority="0x0100" type="Button">
+        <Parent guid="guidCFIPackageCmdSet" id="CopyRunGroup" />
+        <Icon guid="guidImagesCopyRunRcp" id="bmpCopyRunVendoRcp" />
+        <Strings>
+          <ButtonText>CopyRunRCP</ButtonText>
+          <ToolTipText>Copy Release and run Vendo in RCP mode</ToolTipText>
+          <MenuText>Copy and run RCP</MenuText>
+          <CommandName>CopyRunRCP</CommandName>
+        </Strings>
+      </Button>
+      <Button guid="guidCFIPackageCmdSet" id="UpdateAmagDataCommandId" priority="0x0100" type="Button">
+        <Parent guid="guidCFIPackageCmdSet" id="UpdateAmagDataGroup" />
+        <Icon guid="guidImagesUpdateAmagData" id="bmpUpdateAmagData" />
+        <Strings>
+          <ButtonText>UpdateAmag.Data</ButtonText>
+          <ToolTipText>Update Amag.Data</ToolTipText>
+          <MenuText>Update Amag.Data</MenuText>
+          <CommandName>UpdateAmag.Data</CommandName>
+        </Strings>
+      </Button>
+      <Button guid="guidCFIPackageCmdSet" id="UpdateEnumsCommandCommandId" priority="0x0100" type="Button">
+        <Parent guid="guidCFIPackageCmdSet" id="UpdateEnumsGroup" />
+        <Icon guid="guidImagesUpdateEnums" id="bmpUpdateEnums" />
+        <Strings>
+          <ButtonText>UpdateEnums</ButtonText>
+          <ToolTipText>Update Enums</ToolTipText>
+          <MenuText>Update Enums</MenuText>
+          <CommandName>UpdateEnums</CommandName>
+        </Strings>
+      </Button>
+      <Button guid="guidCFIPackageCmdSet" id="OpenFileMacrosXmlCommandId" priority="0x0100" type="Button">
+        <Parent guid="guidCFIPackageCmdSet" id="OpenFileGroup" />
+        <Icon guid="guidImagesOpenFile" id="bmpOpenTxtFile" />
+        <Strings>
+          <ButtonText>macros.xml</ButtonText>
+          <ToolTipText>Open macros.xml</ToolTipText>
+          <MenuText>Open macros.xml</MenuText>
+          <CommandName>Open macros.xml</CommandName>
+        </Strings>
+      </Button>
+      <Button guid="guidCFIPackageCmdSet" id="OpenFileChangesLstCommandId" priority="0x0100" type="Button">
+        <Parent guid="guidCFIPackageCmdSet" id="OpenFileGroup" />
+        <Icon guid="guidImagesOpenFile" id="bmpOpenTxtFile" />
+        <Strings>
+          <ButtonText>changes.lst</ButtonText>
+          <ToolTipText>Open changes.lst</ToolTipText>
+          <MenuText>Open changes.lst</MenuText>
+          <CommandName>Open changes.lst</CommandName>
+        </Strings>
+      </Button>
+      <Button guid="guidCFIPackageCmdSet" id="OpenFileMrpChangesLstCommandId" priority="0x0100" type="Button">
+        <Parent guid="guidCFIPackageCmdSet" id="OpenFileGroup" />
+        <Icon guid="guidImagesOpenFile" id="bmpOpenTxtFile" />
+        <Strings>
+          <ButtonText>changes.lst (MRP)</ButtonText>
+          <ToolTipText>Open changes.lst (MRP)</ToolTipText>
+          <MenuText>Open changes.lst (MRP)</MenuText>
+          <CommandName>Open changes.lst (MRP)</CommandName>
+        </Strings>
+      </Button>
+      <Button guid="guidCFIPackageCmdSet" id="OpenFileFactsCommandId" priority="0x0100" type="Button">
+        <Parent guid="guidCFIPackageCmdSet" id="OpenFileGroup" />
+        <Icon guid="guidImagesOpenFile" id="bmpOpenTxtFile" />
+        <Strings>
+          <ButtonText>facts.txt</ButtonText>
+          <ToolTipText>Open facts.txt</ToolTipText>
+          <MenuText>Open facts.txt</MenuText>
+          <CommandName>Open facts.txt</CommandName>
+        </Strings>
+      </Button>
+      <Button guid="guidCFIPackageCmdSet" id="GoToIconsCommandId" priority="0x0100" type="Button">
+        <Parent guid="guidCFIPackageCmdSet" id="GoToLocationGroup" />
+        <Icon guid="guidImagesGoToIcons" id="bmpGoToIcons" />
+        <Strings>
+          <ButtonText>Isons</ButtonText>
+          <ToolTipText>Go to icons location</ToolTipText>
+          <MenuText>Go to icons location</MenuText>
+          <CommandName>Go to icons location</CommandName>
+        </Strings>
+      </Button>
+      <Button guid="guidCFIPackageCmdSet" id="AboutCommandId" priority="0x0100" type="Button">
+        <Parent guid="guidCFIPackageCmdSet" id="AboutGroup" />
+        <Icon guid="guidImagesAbout" id="bmpAbout" />
+        <Strings>
+          <ButtonText>About</ButtonText>
+          <ToolTipText>About Extension</ToolTipText>
+          <MenuText>About...</MenuText>
+          <CommandName>About</CommandName>
+        </Strings>
+      </Button>
+      <Button guid="guidCFIPackageContextMenuSet" id="GuidGenerateCommandId" priority="0x0100" type="Button">
+        <Parent guid="guidCFIPackageContextMenuSet" id="ContextMenuGroup" />
+        <Icon guid="guidImagesGuid" id="bmpGenGuid" />
+        <Strings>
+          <ButtonText>GUUID</ButtonText>
+          <ToolTipText>Generate Guid</ToolTipText>
+          <MenuText>Generate Guid</MenuText>
+          <CommandName>GUUID</CommandName>
+        </Strings>
+      </Button>
+    </Buttons>
+
+    <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
+    <Bitmaps>
+      <!--  The bitmap id is defined in a way that is a little bit different from the others:
+            the declaration starts with a guid for the bitmap strip, then there is the resource id of the
+            bitmap strip containing the bitmaps and then there are the numeric ids of the elements used
+            inside a button definition. An important aspect of this declaration is that the element id
+            must be the actual index (1-based) of the bitmap inside the bitmap strip. -->
+      <Bitmap guid="guidImagesCopyRelease" href="Resources\CopyReleaseCommand.png" usedList="bmpCopyRelease" />
+      <Bitmap guid="guidImagesRunNormal" href="Resources\RunNormalCommand.png" usedList="bmpVendoNormal" />
+      <Bitmap guid="guidImagesRunReader" href="Resources\RunReaderCommand.png" usedList="bmpVendoReader" />
+      <Bitmap guid="guidImagesRunRcp" href="Resources\RunRcpCommand.png" usedList="bmpVendoRcp" />
+      <Bitmap guid="guidImagesCopyRunNormal" href="Resources\CopyRunNormalCommand.png" usedList="bmpCopyRunVendoNormal" />
+      <Bitmap guid="guidImagesCopyRunReader" href="Resources\CopyRunReaderCommand.png" usedList="bmpCopyRunVendoReader" />
+      <Bitmap guid="guidImagesCopyRunRcp" href="Resources\CopyRunRcpCommand.png" usedList="bmpCopyRunVendoRcp" />
+      <Bitmap guid="guidImagesOpenFile" href="Resources\OpenFileCommand.png" usedList="bmpOpenTxtFile" />
+      <Bitmap guid="guidImagesUpdateAmagData" href="Resources\UpdateAmagDataCommand.png" usedList="bmpUpdateAmagData" />
+      <Bitmap guid="guidImagesAbout" href="Resources\AboutCommand.png" usedList="bmpAbout" />
+      <Bitmap guid="guidImagesGuid" href="Resources\GuidGenerateCommand.png" usedList="bmpGenGuid" />
+      <Bitmap guid="guidImagesUpdateEnums" href="Resources\UpdateEnumsCommand.png" usedList="bmpUpdateEnums" />
+      <Bitmap guid="guidImagesGoToIcons" href="Resources\GoToIconsCommand.png" usedList="bmpGoToIcons" />
+    </Bitmaps>
+  </Commands>
+
+  <Symbols>
+    <!-- This is the package guid. -->
+    <GuidSymbol name="guidCFIPackage" value="{9f3b370f-1249-48ab-8882-016fd64a59e9}" />
+
+    <!-- This is the guid used to group the menu commands together -->
+    <GuidSymbol name="guidCFIPackageCmdSet" value="{a1cdc366-abd2-4e52-bcb4-ea939220d430}">
+      <IDSymbol name="TopLevelMenu" value="0x2000" />
+      <IDSymbol name="CopyGroup" value="0x2001" />
+      <IDSymbol name="RunGroup" value="0x2002" />
+      <IDSymbol name="CopyRunGroup" value="0x2003" />
+      <IDSymbol name="UpdateAmagDataGroup" value="0x2004" />
+      <IDSymbol name="UpdateEnumsGroup" value="0x2005" />      
+      <IDSymbol name="OpenFileGroup" value="0x2006" />  
+      <IDSymbol name="GoToLocationGroup" value="0x2007" />        
+      <IDSymbol name="AboutGroup" value="0x2008" />      
+            
+      <IDSymbol name="CopyReleaseCommandId" value="0x0100" />
+      <IDSymbol name="RunNormalCommandId" value="0x0101" />
+      <IDSymbol name="RunReaderCommandId" value="0x0102" />
+      <IDSymbol name="RunRcpCommandId" value="0x0103" />
+      <IDSymbol name="CopyRunNormalCommandId" value="0x0104" />
+      <IDSymbol name="CopyRunReaderCommandId" value="0x0105" />
+      <IDSymbol name="CopyRunRcpCommandId" value="0x0106" />
+      <IDSymbol name="UpdateAmagDataCommandId" value="0x0107" />      
+      <IDSymbol name="OpenFileMacrosXmlCommandId" value="0x0108" />
+      <IDSymbol name="OpenFileChangesLstCommandId" value="0x0109" />
+      <IDSymbol name="OpenFileMrpChangesLstCommandId" value="0x0110" />
+      <IDSymbol name="OpenFileFactsCommandId" value="0x0111" />      
+      <IDSymbol name="AboutCommandId" value="0x0112" />
+      <IDSymbol name="GoToIconsCommandId" value="0x0113" />
+      <IDSymbol name="UpdateEnumsCommandCommandId" value="0x0114" />
+    </GuidSymbol>
+  
+    <GuidSymbol name="guidCFIPackageContextMenuSet" value="{e4c4c8e6-dbe3-40f1-9d4e-cd8ed664f6d7}">
+      <IDSymbol name="ContextMenuGroup" value="0x2000"/>
+      <IDSymbol name="GuidGenerateCommandId" value="0x0100"/>
+    </GuidSymbol>
+
+    <GuidSymbol value="{52852a78-b591-4ec3-8baa-c723ee09bd30}" name="guidImagesCopyRelease">
+      <IDSymbol name="bmpCopyRelease" value="1" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{2c1f768b-a87a-445b-b01f-b8937d7582b9}" name="guidImagesRunNormal">
+      <IDSymbol name="bmpVendoNormal" value="1" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{d6a8c102-cabf-4120-809b-8ced252286e3}" name="guidImagesRunReader">
+      <IDSymbol name="bmpVendoReader" value="1" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{465e12ca-c411-48ed-86cd-701b34a66552}" name="guidImagesRunRcp">
+      <IDSymbol name="bmpVendoRcp" value="1" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{edb79a81-5de7-4a15-a656-8760216f086d}" name="guidImagesOpenFile">
+      <IDSymbol name="bmpOpenTxtFile" value="1" />
+    </GuidSymbol>
+        
+    <GuidSymbol value="{2c7b0ca5-353c-49fe-9905-bb26a3452a69}" name="guidImagesCopyRunNormal">
+      <IDSymbol name="bmpCopyRunVendoNormal" value="1" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{75117a81-6408-4405-b8ce-9d29b26d19f8}" name="guidImagesCopyRunReader">
+      <IDSymbol name="bmpCopyRunVendoReader" value="1" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{4f092660-1f0e-4124-8943-55c0f4c45740}" name="guidImagesCopyRunRcp">
+      <IDSymbol name="bmpCopyRunVendoRcp" value="1" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{9b1e91b6-b716-4a6d-9414-94c11711e792}" name="guidImagesUpdateAmagData">
+      <IDSymbol name="bmpUpdateAmagData" value="1" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{18ba1675-3322-49c7-b07b-c9da030ce04a}" name="guidImagesAbout">
+      <IDSymbol name="bmpAbout" value="1" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{7bab6acd-93a8-4131-9232-2f45930a2d6f}" name="guidImagesGuid">
+      <IDSymbol name="bmpGenGuid" value="1" />
+    </GuidSymbol>
+            
+    <GuidSymbol value="{f839dbf7-c9ac-417f-8966-e459d2800ae6}" name="guidImagesUpdateEnums">
+      <IDSymbol name="bmpUpdateEnums" value="1" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{a85564fa-889a-41a2-9338-00580cbdfc41}" name="guidImagesGoToIcons">
+      <IDSymbol name="bmpGoToIcons" value="1" />
+    </GuidSymbol>
+  </Symbols>
+</CommandTable>
