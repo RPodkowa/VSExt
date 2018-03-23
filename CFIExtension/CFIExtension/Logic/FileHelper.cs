@@ -17,7 +17,7 @@ namespace CFIExtension.Logic
         public FileHelper(Package package)
         {
             DTE dte = (DTE)((IServiceProvider)package).GetService(typeof(DTE));
-            string solutionDir = System.IO.Path.GetDirectoryName(dte.Solution.FullName);
+            solutionDir = System.IO.Path.GetDirectoryName(dte.Solution.FullName);
             notepadPath = (package as CFIPackage).OptionNotepadPath;
         }
 
