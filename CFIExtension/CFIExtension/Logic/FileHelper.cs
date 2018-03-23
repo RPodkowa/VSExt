@@ -11,28 +11,26 @@ namespace CFIExtension.Logic
 {
     public class FileHelper
     {
-        private string fileFullPath;
+        private string solutionDir;
         private string notepadPath;
 
-        public FileHelper(string fileName, Package package)
+        public FileHelper(Package package)
         {
             DTE dte = (DTE)((IServiceProvider)package).GetService(typeof(DTE));
             string solutionDir = System.IO.Path.GetDirectoryName(dte.Solution.FullName);
-
             notepadPath = (package as CFIPackage).OptionNotepadPath;
-            fileFullPath = GetFileFullPath(fileName, solutionDir);
         }
 
-        public void OpenNotepad()
+        public void OpenNotepad(string fileName)
         {
-            System.Diagnostics.Process.Start(fileFullPath);
+            System.Diagnostics.Process.Start(GetFileFullPath(fileName));
         }
-        public void GoToLocation()
+        public void GoToLocation(string location)
         {
-            System.Diagnostics.Process.Start(fileFullPath);
+            System.Diagnostics.Process.Start(GetFileFullPath(location));
         }
 
-        private string GetFileFullPath(string fileName, string solutionDir)
+        private string GetFileFullPath(string fileName)
         {
             string ret = solutionDir;
             switch (fileName)

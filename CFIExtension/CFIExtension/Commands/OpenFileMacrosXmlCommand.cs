@@ -89,8 +89,8 @@ namespace CFIExtension
         /// <param name="e">Event args.</param>
         private void MenuItemCallback(object sender, EventArgs e)
         {            
-            var fh = new FileHelper("macros.xml", package);
-            fh.OpenNotepad();
+            var fh = new FileHelper(package);
+            fh.OpenNotepad("macros.xml");
         }
     }
 }
