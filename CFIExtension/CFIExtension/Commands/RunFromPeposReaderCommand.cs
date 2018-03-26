@@ -1,26 +1,25 @@
 ﻿using System;
 using System.ComponentModel.Design;
 using System.Globalization;
-using CFIExtension.Logic;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
-namespace CFIExtension
+namespace CFIExtension.Commands
 {
     /// <summary>
     /// Command handler
     /// </summary>
-    internal sealed class CopyReleaseCommand
+    internal sealed class RunFromPeposReaderCommand
     {
         /// <summary>
         /// Command ID.
         /// </summary>
-        public const int CommandId = 0x0100;
+        public const int CommandId = 4129;
 
         /// <summary>
         /// Command menu group (command set GUID).
         /// </summary>
-        public static readonly Guid CommandSet = new Guid("a1cdc366-abd2-4e52-bcb4-ea939220d430");
+        public static readonly Guid CommandSet = new Guid("8f903365-a17c-486f-8d5c-5019e715bb0a");
 
         /// <summary>
         /// VS Package that provides this command, not null.
@@ -28,11 +27,11 @@ namespace CFIExtension
         private readonly Package package;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CopyReleaseCommand"/> class.
+        /// Initializes a new instance of the <see cref="RunFromPeposReaderCommand"/> class.
         /// Adds our command handlers for menu (commands must exist in the command table file)
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
-        private CopyReleaseCommand(Package package)
+        private RunFromPeposReaderCommand(Package package)
         {
             if (package == null)
             {
@@ -53,7 +52,7 @@ namespace CFIExtension
         /// <summary>
         /// Gets the instance of the command.
         /// </summary>
-        public static CopyReleaseCommand Instance
+        public static RunFromPeposReaderCommand Instance
         {
             get;
             private set;
@@ -76,7 +75,7 @@ namespace CFIExtension
         /// <param name="package">Owner package, not null.</param>
         public static void Initialize(Package package)
         {
-            Instance = new CopyReleaseCommand(package);
+            Instance = new RunFromPeposReaderCommand(package);
         }
 
         /// <summary>
@@ -88,8 +87,17 @@ namespace CFIExtension
         /// <param name="e">Event args.</param>
         private void MenuItemCallback(object sender, EventArgs e)
         {
-            var vh = new ToolsHelper(package);
-            vh.CopyAsync();
+            string message = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);
+            string title = "RunFromPeposReaderCommand";
+
+            // Show a message box to prove we were here
+            VsShellUtilities.ShowMessageBox(
+                this.ServiceProvider,
+                message,
+                title,
+                OLEMSGICON.OLEMSGICON_INFO,
+                OLEMSGBUTTON.OLEMSGBUTTON_OK,
+                OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
         }
     }
 }

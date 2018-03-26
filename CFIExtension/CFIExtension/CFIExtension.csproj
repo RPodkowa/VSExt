@@ -54,11 +54,28 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="GUI\AboutDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AboutDialog.Designer.cs">
+      <DependentUpon>AboutDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\AboutCommand.cs" />
     <Compile Include="Commands\GuidGenerateCommand.cs" />
     <Compile Include="Commands\GoToIconsCommand.cs" />
+    <Compile Include="Commands\RunFromPeposNormalCommand.cs" />
+    <Compile Include="Commands\RunFromPeposReaderCommand.cs" />
+    <Compile Include="GUI\AboutDialog1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AboutDialog.resx</DependentUpon>
+    </Compile>
     <Compile Include="Logic\GuidGenerator.cs" />
     <Compile Include="Logic\FileHelper.cs" />
+    <Compile Include="Logic\OutputWriter.cs" />
+    <Compile Include="Logic\ToolsHelper.cs" />
+    <Compile Include="Logic\Xml\XmlVersionInfo.cs" />
+    <Compile Include="Logic\XmlSettingsReader.cs" />
     <Compile Include="Package\CFIPackage.cs" />
     <Compile Include="Commands\CopyReleaseCommand.cs" />
     <Compile Include="Commands\OpenFileChangesLstCommand.cs" />
@@ -89,6 +106,8 @@
       <SubType>Designer</SubType>
       <Generator>VsctGenerator</Generator>
     </VSCTCompile>
+    <Content Include="Resources\RunFromPeposReaderCommand.png" />
+    <Content Include="Resources\RunFromPeposNormalCommand.png" />
     <Content Include="Resources\AboutCommand.png" />
     <Content Include="Resources\CopyRunNormalCommand.png" />
     <Content Include="Resources\CopyRunRcpCommand.png" />
@@ -203,11 +222,17 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="GUI\AboutDialog.resx">
+      <DependentUpon>AboutDialog.cs</DependentUpon>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AboutDialog1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="VSPackage.resx">
       <MergeWithCTO>true</MergeWithCTO>
       <ManifestResourceName>VSPackage</ManifestResourceName>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="..\packages\Microsoft.VisualStudio.SDK.EmbedInteropTypes.15.0.10\build\Microsoft.VisualStudio.SDK.EmbedInteropTypes.targets" Condition="Exists('..\packages\Microsoft.VisualStudio.SDK.EmbedInteropTypes.15.0.10\build\Microsoft.VisualStudio.SDK.EmbedInteropTypes.targets')" />
@@ -220,6 +245,11 @@
     <Error Condition="!Exists('..\packages\Microsoft.VSSDK.BuildTools.15.5.100\build\Microsoft.VSSDK.BuildTools.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.VSSDK.BuildTools.15.5.100\build\Microsoft.VSSDK.BuildTools.targets'))" />
   </Target>
   <Import Project="..\packages\Microsoft.VSSDK.BuildTools.15.5.100\build\Microsoft.VSSDK.BuildTools.targets" Condition="Exists('..\packages\Microsoft.VSSDK.BuildTools.15.5.100\build\Microsoft.VSSDK.BuildTools.targets')" />
+  <PropertyGroup>
+    <PreBuildEvent>echo "---- BEGIN ButtonsReader ----"
+$(SolutionDir)ButtonsReader.exe $(SolutionDir)
+echo "---- END ButtonsReader --------"</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

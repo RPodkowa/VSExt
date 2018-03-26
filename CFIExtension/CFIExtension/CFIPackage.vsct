@@ -44,7 +44,7 @@
           <CommandName>CFI</CommandName>
         </Strings>
       </Menu>
-      <Menu guid="guidCFIPackageCmdSet" id="CFIToolbar" type="Toolbar" >  
+      <Menu guid="guidCFIPackageCmdSet" id="CFIToolbar" type="Toolbar">  
         <CommandFlag>DefaultDocked</CommandFlag>  
         <Strings>  
             <ButtonText>CFI</ButtonText>  
@@ -105,6 +105,9 @@
       <Group guid="guidCFIPackageCmdSet" id="ToolbarGoToLocationGroup" priority="0x0606">
         <Parent guid="guidCFIPackageCmdSet" id="CFIToolbar" />
       </Group>      
+      <Group guid="guidCFIPackageCmdSet1" id="MyMenuGroup" priority="0x0600">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS" />
+      </Group>
     </Groups>
 
     <!--Buttons section. -->
@@ -392,6 +395,20 @@
           <CommandName>Open changes.lst (MRP)</CommandName>
         </Strings>
       </Button>    
+      <Button guid="guidCFIPackageCmdSet1" id="cmdidRunFromPeposNormalCommand" priority="0x0100" type="Button">
+        <Parent guid="guidCFIPackageCmdSet1" id="MyMenuGroup" />
+        <Icon guid="guidImages" id="bmpPic1" />
+        <Strings>
+          <ButtonText>Invoke RunFromPeposNormalCommand</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidCFIPackageCmdSet1" id="cmdidRunFromPeposReaderCommand" priority="0x0100" type="Button">
+        <Parent guid="guidCFIPackageCmdSet1" id="MyMenuGroup" />
+        <Icon guid="guidImages1" id="bmpPic1" />
+        <Strings>
+          <ButtonText>Invoke RunFromPeposReaderCommand</ButtonText>
+        </Strings>
+      </Button>
     </Buttons>
 
     <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
@@ -414,6 +431,8 @@
       <Bitmap guid="guidImagesGuid" href="Resources\GuidGenerateCommand.png" usedList="bmpGenGuid" />
       <Bitmap guid="guidImagesUpdateEnums" href="Resources\UpdateEnumsCommand.png" usedList="bmpUpdateEnums" />
       <Bitmap guid="guidImagesGoToIcons" href="Resources\GoToIconsCommand.png" usedList="bmpGoToIcons" />
+      <Bitmap guid="guidImages" href="Resources\RunFromPeposNormalCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
+      <Bitmap guid="guidImages1" href="Resources\RunFromPeposReaderCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
     </Bitmaps>
   </Commands>
 
@@ -460,8 +479,8 @@
     </GuidSymbol>
   
     <GuidSymbol name="guidCFIPackageContextMenuSet" value="{e4c4c8e6-dbe3-40f1-9d4e-cd8ed664f6d7}">
-      <IDSymbol name="ContextMenuGroup" value="0x2000"/>
-      <IDSymbol name="GuidGenerateCommandId" value="0x0100"/>
+      <IDSymbol name="ContextMenuGroup" value="0x2000" />
+      <IDSymbol name="GuidGenerateCommandId" value="0x0100" />
     </GuidSymbol>
 
     <GuidSymbol value="{52852a78-b591-4ec3-8baa-c723ee09bd30}" name="guidImagesCopyRelease">
@@ -514,6 +533,30 @@
   
     <GuidSymbol value="{a85564fa-889a-41a2-9338-00580cbdfc41}" name="guidImagesGoToIcons">
       <IDSymbol name="bmpGoToIcons" value="1" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{8f903365-a17c-486f-8d5c-5019e715bb0a}" name="guidCFIPackageCmdSet1">
+      <IDSymbol value="4128" name="MyMenuGroup" />
+      <IDSymbol value="256" name="cmdidRunFromPeposNormalCommand" />
+      <IDSymbol value="4129" name="cmdidRunFromPeposReaderCommand" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{c4b9485f-6ef2-45af-8ccd-fa340bbea8f1}" name="guidImages">
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{4a175149-7fae-451c-9f79-9b98bb0e3d35}" name="guidImages1">
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
     </GuidSymbol>
   </Symbols>
 </CommandTable>

@@ -100,6 +100,8 @@ namespace CFIExtension
             GuidGenerateCommand.Initialize(this);
             UpdateEnumsCommand.Initialize(this);
             GoToIconsCommand.Initialize(this);
+            CFIExtension.Commands.RunFromPeposNormalCommand.Initialize(this);
+            CFIExtension.Commands.RunFromPeposReaderCommand.Initialize(this);
         }
 
         #endregion

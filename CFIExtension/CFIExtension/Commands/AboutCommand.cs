@@ -89,35 +89,8 @@ namespace CFIExtension
         /// <param name="e">Event args.</param>
         private void MenuItemCallback(object sender, EventArgs e)
         {
-            //CFIPackage cfiPackage = this.package as CFIPackage;
-
-            //string message = cfiPackage.OptionInteger.ToString();
-            //string title = "AboutCommand";
-
-            //// Show a message box to prove we were here
-            //VsShellUtilities.ShowMessageBox(
-            //    this.ServiceProvider,
-            //    message,
-            //    title,
-            //    OLEMSGICON.OLEMSGICON_INFO,
-            //    OLEMSGBUTTON.OLEMSGBUTTON_OK,
-            //    OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
-
-            IVsOutputWindow outWindow = Package.GetGlobalService(typeof(SVsOutputWindow)) as IVsOutputWindow;
-
-            // Use e.g. Tools -> Create GUID to make a stable, but unique GUID for your pane.
-            // Also, in a real project, this should probably be a static constant, and not a local variable
-            Guid customGuid = new Guid("0F44E2D1-F5FA-4d2d-AB30-22BE8ECD9789");
-            string customTitle = "Custom Window Title";
-            outWindow.CreatePane(ref customGuid, customTitle, 1, 1);
-            
-        
-            IVsOutputWindowPane customPane;
-            outWindow.GetPane(ref customGuid, out customPane);
-
-            customPane.OutputString("Hello, Custom World!");
-            customPane.Activate(); // Brings this pane into view
-            
+            var ad = new AboutDialog();
+            ad.ShowDialog();                        
         }
     }
 }

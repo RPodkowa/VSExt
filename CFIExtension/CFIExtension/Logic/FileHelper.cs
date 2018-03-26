@@ -23,7 +23,7 @@ namespace CFIExtension.Logic
 
         public void OpenNotepad(string fileName)
         {
-            System.Diagnostics.Process.Start(GetFileFullPath(fileName));
+            System.Diagnostics.Process.Start(notepadPath, GetFileFullPath(fileName));
         }
         public void GoToLocation(string location)
         {
