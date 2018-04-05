@@ -51,6 +51,13 @@
             <CommandName>CFI</CommandName>  
         </Strings>  
       </Menu>  
+      <Menu guid="guidCFIPackageCmdSet" id="SubMenuOpenFile" priority="0x0100" type="Menu">  
+        <Parent guid="guidCFIPackageCmdSet" id="OpenFileGroup" />  
+        <Strings>  
+          <ButtonText>Open file</ButtonText>  
+          <CommandName>Open file</CommandName>  
+        </Strings>  
+      </Menu>  
     </Menus>
     
     <Groups>           
@@ -73,6 +80,9 @@
       <Group guid="guidCFIPackageCmdSet" id="OpenFileGroup" priority="0x0605">
         <Parent guid="guidCFIPackageCmdSet" id="TopLevelMenu" />
       </Group>
+      <Group guid="guidCFIPackageCmdSet" id="SubMenuOpenFileGroup" priority="0x0000">  
+        <Parent guid="guidCFIPackageCmdSet" id="SubMenuOpenFile" />  
+      </Group>  
       <Group guid="guidCFIPackageCmdSet" id="GoToLocationGroup" priority="0x0606">
         <Parent guid="guidCFIPackageCmdSet" id="TopLevelMenu" />
       </Group>
@@ -214,7 +224,7 @@
         </Strings>
       </Button>
       <Button guid="guidCFIPackageCmdSet" id="OpenFileMacrosXmlCommandId" priority="0x0100" type="Button">
-        <Parent guid="guidCFIPackageCmdSet" id="OpenFileGroup" />
+        <Parent guid="guidCFIPackageCmdSet" id="SubMenuOpenFileGroup" />
         <Icon guid="guidImagesOpenFile" id="bmpOpenTxtFile" />
         <Strings>
           <ButtonText>macros.xml</ButtonText>
@@ -224,7 +234,7 @@
         </Strings>
       </Button>
       <Button guid="guidCFIPackageCmdSet" id="OpenFileChangesLstCommandId" priority="0x0100" type="Button">
-        <Parent guid="guidCFIPackageCmdSet" id="OpenFileGroup" />
+        <Parent guid="guidCFIPackageCmdSet" id="SubMenuOpenFileGroup" />
         <Icon guid="guidImagesOpenFile" id="bmpOpenTxtFile" />
         <Strings>
           <ButtonText>changes.lst</ButtonText>
@@ -234,7 +244,7 @@
         </Strings>
       </Button>
       <Button guid="guidCFIPackageCmdSet" id="OpenFileMrpChangesLstCommandId" priority="0x0100" type="Button">
-        <Parent guid="guidCFIPackageCmdSet" id="OpenFileGroup" />
+        <Parent guid="guidCFIPackageCmdSet" id="SubMenuOpenFileGroup" />
         <Icon guid="guidImagesOpenFile" id="bmpOpenTxtFile" />
         <Strings>
           <ButtonText>changes.lst (MRP)</ButtonText>
@@ -244,7 +254,7 @@
         </Strings>
       </Button>
       <Button guid="guidCFIPackageCmdSet" id="OpenFileFactsCommandId" priority="0x0100" type="Button">
-        <Parent guid="guidCFIPackageCmdSet" id="OpenFileGroup" />
+        <Parent guid="guidCFIPackageCmdSet" id="SubMenuOpenFileGroup" />
         <Icon guid="guidImagesOpenFile" id="bmpOpenTxtFile" />
         <Strings>
           <ButtonText>facts.txt</ButtonText>
@@ -282,6 +292,16 @@
           <ToolTipText>Generate Guid</ToolTipText>
           <MenuText>Generate Guid</MenuText>
           <CommandName>GUUID</CommandName>
+        </Strings>
+      </Button>
+      <Button guid="guidCFIPackageContextMenuSet" id="CopySelectionAdressCommandId" priority="0x0101" type="Button">
+        <Parent guid="guidCFIPackageContextMenuSet" id="ContextMenuGroup" />
+        <Icon guid="guidImagesCopySelectionAdress" id="bmpCopy" />
+        <Strings>
+          <ButtonText>CopySelectionAdress</ButtonText>
+          <ToolTipText>Copy selection adress</ToolTipText>
+          <MenuText>Copy selection adress</MenuText>
+          <CommandName>CopySelectionAdress</CommandName>
         </Strings>
       </Button>
       <!-- ================================================ CFIToolbar ================================================ -->
@@ -396,14 +416,14 @@
         </Strings>
       </Button>    
       <Button guid="guidCFIPackageCmdSet1" id="cmdidRunFromPeposNormalCommand" priority="0x0100" type="Button">
-        <Parent guid="guidCFIPackageCmdSet1" id="MyMenuGroup" />
+        <Parent guid="guidCFIPackageCmdSet1" id="SubMenuGroup" />
         <Icon guid="guidImages" id="bmpPic1" />
         <Strings>
           <ButtonText>Invoke RunFromPeposNormalCommand</ButtonText>
         </Strings>
       </Button>
       <Button guid="guidCFIPackageCmdSet1" id="cmdidRunFromPeposReaderCommand" priority="0x0100" type="Button">
-        <Parent guid="guidCFIPackageCmdSet1" id="MyMenuGroup" />
+        <Parent guid="guidCFIPackageCmdSet1" id="SubMenuGroup" />
         <Icon guid="guidImages1" id="bmpPic1" />
         <Strings>
           <ButtonText>Invoke RunFromPeposReaderCommand</ButtonText>
@@ -433,6 +453,7 @@
       <Bitmap guid="guidImagesGoToIcons" href="Resources\GoToIconsCommand.png" usedList="bmpGoToIcons" />
       <Bitmap guid="guidImages" href="Resources\RunFromPeposNormalCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
       <Bitmap guid="guidImages1" href="Resources\RunFromPeposReaderCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
+      <Bitmap guid="guidImagesCopySelectionAdress" href="Resources\CopySelectionAdressCommand.png" usedList="bmpCopy" />
     </Bitmaps>
   </Commands>
 
@@ -451,6 +472,10 @@
       <IDSymbol name="OpenFileGroup" value="0x2006" />  
       <IDSymbol name="GoToLocationGroup" value="0x2007" />        
       <IDSymbol name="AboutGroup" value="0x2008" />      
+      
+      <IDSymbol name="SubMenuOpenFile" value="0x4006" />   
+      <IDSymbol name="SubMenuOpenFileGroup" value="0x5006" />   
+      
       
       <IDSymbol name="CFIToolbar" value="0x3000" />
       <IDSymbol name="ToolbarCopyGroup" value="0x3001" />   
@@ -481,6 +506,7 @@
     <GuidSymbol name="guidCFIPackageContextMenuSet" value="{e4c4c8e6-dbe3-40f1-9d4e-cd8ed664f6d7}">
       <IDSymbol name="ContextMenuGroup" value="0x2000" />
       <IDSymbol name="GuidGenerateCommandId" value="0x0100" />
+      <IDSymbol name="CopySelectionAdressCommandId" value="0x0101" />      
     </GuidSymbol>
 
     <GuidSymbol value="{52852a78-b591-4ec3-8baa-c723ee09bd30}" name="guidImagesCopyRelease">
@@ -537,8 +563,11 @@
   
     <GuidSymbol value="{8f903365-a17c-486f-8d5c-5019e715bb0a}" name="guidCFIPackageCmdSet1">
       <IDSymbol value="4128" name="MyMenuGroup" />
+      <IDSymbol name="SubMenu" value="0x1100" />  
+      <IDSymbol name="SubMenuGroup" value="0x1150" />  
       <IDSymbol value="256" name="cmdidRunFromPeposNormalCommand" />
       <IDSymbol value="4129" name="cmdidRunFromPeposReaderCommand" />
+      <IDSymbol value="4433" name="cmdidCopySelectionAdressCommand" />
     </GuidSymbol>
   
     <GuidSymbol value="{c4b9485f-6ef2-45af-8ccd-fa340bbea8f1}" name="guidImages">
@@ -557,6 +586,10 @@
       <IDSymbol name="bmpPicX" value="4" />
       <IDSymbol name="bmpPicArrows" value="5" />
       <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{598ad16c-c1ec-4a52-8196-a35e04b5403e}" name="guidImagesCopySelectionAdress">
+      <IDSymbol name="bmpCopy" value="1" />
     </GuidSymbol>
   </Symbols>
 </CommandTable>

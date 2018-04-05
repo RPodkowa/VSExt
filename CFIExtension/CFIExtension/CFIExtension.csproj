@@ -54,6 +54,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Commands\CopySelectionAdressCommand.cs" />
     <Compile Include="GUI\AboutDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,9 +71,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AboutDialog.resx</DependentUpon>
     </Compile>
-    <Compile Include="Logic\GuidGenerator.cs" />
     <Compile Include="Logic\FileHelper.cs" />
     <Compile Include="Logic\OutputWriter.cs" />
+    <Compile Include="Logic\TextEditorHelper.cs" />
     <Compile Include="Logic\ToolsHelper.cs" />
     <Compile Include="Logic\Xml\XmlVersionInfo.cs" />
     <Compile Include="Logic\XmlSettingsReader.cs" />
@@ -106,6 +107,7 @@
       <SubType>Designer</SubType>
       <Generator>VsctGenerator</Generator>
     </VSCTCompile>
+    <Content Include="Resources\CopySelectionAdressCommand.png" />
     <Content Include="Resources\RunFromPeposReaderCommand.png" />
     <Content Include="Resources\RunFromPeposNormalCommand.png" />
     <Content Include="Resources\AboutCommand.png" />

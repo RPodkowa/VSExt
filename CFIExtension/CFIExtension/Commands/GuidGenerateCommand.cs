@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using EnvDTE;
 using CFIExtension.Logic;
+using System.Collections.Generic;
 
 namespace CFIExtension
 {
@@ -89,10 +90,8 @@ namespace CFIExtension
         /// <param name="e">Event args.</param>
         private void MenuItemCallback(object sender, EventArgs e)
         {
-            EnvDTE80.DTE2 applicationObject = ServiceProvider.GetService(typeof(DTE)) as EnvDTE80.DTE2;
-                        
-            var generator = new GuidGenerator(applicationObject.ActiveDocument.FullName);
-            generator.TryGenerate();
-        }
+            var teh = new TextEditorHelper(package);
+            teh.InsertGuidCPP();
+        }        
     }
 }

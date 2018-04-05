@@ -14,67 +14,146 @@ namespace CFIExtension.Logic
 {
     public class ToolsHelper
     {
+        private class ToolsHelperResult
+        {
+            public string message;
+            public bool result;
+
+            public ToolsHelperResult(bool ret)
+            {
+                message = ret ? "" : "Nieznany błąd operacji!";
+                result = ret;
+            }
+
+            public ToolsHelperResult(bool result, string message)
+            {
+                this.result = result;
+                this.message = message;
+            }
+
+            public void Show(IServiceProvider serviceProvider)
+            {
+                ShowCommon(serviceProvider, false);
+            }
+
+            public void ShowIfError(IServiceProvider serviceProvider)
+            {
+                ShowCommon(serviceProvider, true);
+            }
+
+            private void ShowCommon(IServiceProvider serviceProvider, bool ifError)
+            {
+                if (ifError && result)
+                    return;
+
+                OLEMSGICON icon = OLEMSGICON.OLEMSGICON_INFO;
+                if (!result) icon = OLEMSGICON.OLEMSGICON_CRITICAL;
+
+                VsShellUtilities.ShowMessageBox(serviceProvider, message, "", icon, OLEMSGBUTTON.OLEMSGBUTTON_OK, OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
+            }
+        }
+
         private string solutionDir;
         private OutputWriter outputWriter;
-
+        private IServiceProvider serviceProvider;
+        
         public ToolsHelper(Package package)
         {
-            DTE dte = (DTE)((IServiceProvider)package).GetService(typeof(DTE));
+            serviceProvider = (IServiceProvider)package;
+            DTE dte = (DTE)(serviceProvider).GetService(typeof(DTE));
 
             solutionDir = Path.GetDirectoryName(dte.Solution.FullName);
             outputWriter = new OutputWriter("CFI", new Guid("0F44E2D1-F5FA-4d2d-AB30-22BE8ECD9789"));
         }
-
+        
         public async void CopyAsync()
         {
-            bool ret = await TaksCopy();
+            var ret = await TaksCopy();
+
+            ret.Show(serviceProvider);
         }
 
-        private Task<bool> TaksCopy()
+        private Task<ToolsHelperResult> TaksCopy()
         {
-            return Task<bool>.Factory.StartNew(() => Copy());
+            return Task<ToolsHelperResult>.Factory.StartNew(() => Copy());
         }
 
-        private bool Copy()
+        private ToolsHelperResult Copy()
         {
             string toolsPath = solutionDir + @"\#Tools\";
             string program = toolsPath + "SCopy.exe";
             string arguments = string.Format("@\"release.copylist\" /SolutionDir:\"{0}\"", solutionDir);
-            return StartProcess(program, arguments, toolsPath);
+            if (!StartProcess(program, arguments, toolsPath))
+                return new ToolsHelperResult(false);
+
+            return GetCopyResult();
+        }
+
+        private ToolsHelperResult GetCopyResult()
+        {
+            var txt = outputWriter.GetText();
+
+            //10:13:34.106: Copied: 0, Skipped: 288, Errors: 1
+            string status = "";
+            foreach (var line in txt)
+            {
+                if (line.Contains("Copied:") && line.Contains("Skipped:") && line.Contains("Errors:"))
+                    status = line;
+            }
+
+            if (string.IsNullOrEmpty(status))
+                return new ToolsHelperResult(false, "Brak podsumowania operacji!");
+
+            status = status.Replace(",", "");
+            List<string> result = status.Split(' ').ToList();
+            var i = result.FindIndex(x => x == "Errors:") + 1;
+            if (i >= result.Count)
+                return new ToolsHelperResult(false, string.Format("Brak informacji o błędach! ({0})", status));
+
+            var errors = int.Parse(result[i]);
+            if (errors > 0)
+                return new ToolsHelperResult(false, string.Format("Wystąpiły błędy przy kopiowaniu! ({0})", errors));
+
+            return new ToolsHelperResult(true, status);
         }
 
         public async void RunAsync(string mode)
         {
-            bool ret = await TaksRun(mode);
+            var ret = await TaksRun(mode);
+            ret.ShowIfError(serviceProvider);
         }
 
-        private Task<bool> TaksRun(string mode)
+        private Task<ToolsHelperResult> TaksRun(string mode)
         {
-            return Task<bool>.Factory.StartNew(() => Run(mode));
+            return Task<ToolsHelperResult>.Factory.StartNew(() => Run(mode));
         }
 
-        private bool Run(string mode)
+        private ToolsHelperResult Run(string mode)
         {
             var version = XmlSettingsReader.GetVersionInfo(solutionDir);
 
             string program = solutionDir + @"\Release\Amag.App.exe";
             string arguments = GetRunArguments(version, mode);
-            return StartLongProcess(program, arguments);
+            return new ToolsHelperResult(StartLongProcess(program, arguments));
         }
 
         public async void CopyRunAsync(string mode)
         {
-            bool ret = await TaksCopyRun(mode);
+            var ret = await TaksCopyRun(mode);
+            ret.ShowIfError(serviceProvider);
         }
 
-        private Task<bool> TaksCopyRun(string mode)
+        private Task<ToolsHelperResult> TaksCopyRun(string mode)
         {
-            return Task<bool>.Factory.StartNew(() => CopyRun(mode));
+            return Task<ToolsHelperResult>.Factory.StartNew(() => CopyRun(mode));
         }
 
-        private bool CopyRun(string mode)
+        private ToolsHelperResult CopyRun(string mode)
         {
-            return Copy() && Run(mode);
+            var ret = Copy();
+            if (!ret.result) return ret;
+            
+            return Run(mode);
         }
 
         public async void UpdateAmagDataAsync()
@@ -94,6 +173,7 @@ namespace CFIExtension.Logic
             string arguments = solutionDir;
             return StartProcess(program, arguments, solutionDir, true, true);
         }
+
         public async void ENumsAsync()
         {
             bool ret = await TaksENums();

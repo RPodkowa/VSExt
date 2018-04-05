@@ -89,7 +89,7 @@ namespace CFIExtension
             RunReaderCommand.Initialize(this);
             RunRcpCommand.Initialize(this);
             OpenMacrosXmlCommand.Initialize(this);
-            CFIExtension.Commands.OpenFileChangesLstCommand.Initialize(this);
+            OpenFileChangesLstCommand.Initialize(this);
             OpenFileMrpChangesLstCommand.Initialize(this);
             OpenFileFactsCommand.Initialize(this);
             CopyRunNormalCommand.Initialize(this);
@@ -100,8 +100,9 @@ namespace CFIExtension
             GuidGenerateCommand.Initialize(this);
             UpdateEnumsCommand.Initialize(this);
             GoToIconsCommand.Initialize(this);
-            CFIExtension.Commands.RunFromPeposNormalCommand.Initialize(this);
-            CFIExtension.Commands.RunFromPeposReaderCommand.Initialize(this);
+            RunFromPeposNormalCommand.Initialize(this);
+            RunFromPeposReaderCommand.Initialize(this);
+            CopySelectionAdressCommand.Initialize(this);
         }
 
         #endregion

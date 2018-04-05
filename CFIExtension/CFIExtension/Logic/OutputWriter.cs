@@ -11,16 +11,31 @@ namespace CFIExtension.Logic
     public class OutputWriter
     {
         private IVsOutputWindowPane outputWindowPane;
+        private string accLine;
+        private List<string> outputLines;
 
         public OutputWriter(string paneName, Guid paneGuid)
         {
-            IVsOutputWindow outWindow = Package.GetGlobalService(typeof(SVsOutputWindow)) as IVsOutputWindow;            
+            IVsOutputWindow outWindow = Package.GetGlobalService(typeof(SVsOutputWindow)) as IVsOutputWindow;
             outWindow.CreatePane(ref paneGuid, paneName, 1, 1);
 
             outWindow.GetPane(ref paneGuid, out outputWindowPane);
             outputWindowPane.Activate();
+
+            ClearText();
         }
-                
+
+        public void ClearText()
+        {
+            accLine = "";
+            outputLines = new List<string>();
+        }
+
+        public List<string> GetText()
+        {
+            return outputLines;
+        }
+
         public void EmptyLine()
         {
             WriteCommon("", true);
@@ -38,7 +53,13 @@ namespace CFIExtension.Logic
 
         private void WriteCommon(string txt, bool writeLine)
         {
-            if (writeLine) txt += "\r\n";            
+            accLine += txt;
+            if (writeLine)
+            {
+                outputLines.Add(accLine);
+                accLine = "";
+                txt += "\r\n";
+            }
             outputWindowPane.OutputStringThreadSafe(txt);
             //outputWindowPane.Activate();
         }

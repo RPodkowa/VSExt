@@ -10,17 +10,17 @@ namespace CFIExtension
     /// <summary>
     /// Command handler
     /// </summary>
-    internal sealed class OpenFileChangesLstCommand
+    internal sealed class CopySelectionAdressCommand
     {
         /// <summary>
         /// Command ID.
         /// </summary>
-        public const int CommandId = 0x0109;
+        public const int CommandId = 0x0101;
 
         /// <summary>
         /// Command menu group (command set GUID).
         /// </summary>
-        public static readonly Guid CommandSet = new Guid("a1cdc366-abd2-4e52-bcb4-ea939220d430");
+        public static readonly Guid CommandSet = new Guid("e4c4c8e6-dbe3-40f1-9d4e-cd8ed664f6d7");
 
         /// <summary>
         /// VS Package that provides this command, not null.
@@ -28,11 +28,11 @@ namespace CFIExtension
         private readonly Package package;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="OpenFileChangesLstCommand"/> class.
+        /// Initializes a new instance of the <see cref="CopySelectionAdressCommand"/> class.
         /// Adds our command handlers for menu (commands must exist in the command table file)
         /// </summary>
         /// <param name="package">Owner package, not null.</param>
-        private OpenFileChangesLstCommand(Package package)
+        private CopySelectionAdressCommand(Package package)
         {
             if (package == null)
             {
@@ -53,7 +53,7 @@ namespace CFIExtension
         /// <summary>
         /// Gets the instance of the command.
         /// </summary>
-        public static OpenFileChangesLstCommand Instance
+        public static CopySelectionAdressCommand Instance
         {
             get;
             private set;
@@ -76,7 +76,7 @@ namespace CFIExtension
         /// <param name="package">Owner package, not null.</param>
         public static void Initialize(Package package)
         {
-            Instance = new OpenFileChangesLstCommand(package);
+            Instance = new CopySelectionAdressCommand(package);
         }
 
         /// <summary>
@@ -88,8 +88,8 @@ namespace CFIExtension
         /// <param name="e">Event args.</param>
         private void MenuItemCallback(object sender, EventArgs e)
         {
-            var fh = new FileHelper(package);
-            fh.OpenNotepad("changes.lst");
+            var teh = new TextEditorHelper(package);
+            teh.CopySelectionAdress();
         }
     }
 }

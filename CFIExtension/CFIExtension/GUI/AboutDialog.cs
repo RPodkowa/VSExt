@@ -47,7 +47,7 @@ namespace CFIExtension
             var assemblyVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             string ret = String.Format("Version {0}", assemblyVersion);
             //VersionBodyToReplace
-            ret+=".20180326";
+            ret+=".20180405";
             //EndVersionBodyToReplace
             return ret;
         }
@@ -74,10 +74,6 @@ namespace CFIExtension
             desc.Add("  1.5. UpdateEnumsGroup");
             desc.Add("   1.5.1 Update Enums");
             desc.Add("  1.6. OpenFileGroup");
-            desc.Add("   1.6.1 Open macros.xml");
-            desc.Add("   1.6.2 Open changes.lst");
-            desc.Add("   1.6.3 Open changes.lst (MRP)");
-            desc.Add("   1.6.4 Open facts.txt");
             desc.Add("  1.7. GoToLocationGroup");
             desc.Add("   1.7.1 Go to icons location");
             desc.Add("  1.8. AboutGroup");
@@ -100,9 +96,16 @@ namespace CFIExtension
             desc.Add("   2.6.2 Open changes.lst");
             desc.Add("   2.6.3 Open changes.lst (MRP)");
             desc.Add("  2.7. ToolbarGoToLocationGroup");
-            desc.Add(" 3. ContextMenu::");
-            desc.Add("  3.1. ContextMenuGroup");
-            desc.Add("   3.1.1 Generate Guid");
+            desc.Add(" 3. Menu:");
+            desc.Add("  3.1. SubMenuOpenFileGroup");
+            desc.Add("   3.1.1 Open macros.xml");
+            desc.Add("   3.1.2 Open changes.lst");
+            desc.Add("   3.1.3 Open changes.lst (MRP)");
+            desc.Add("   3.1.4 Open facts.txt");
+            desc.Add(" 4. ContextMenu::");
+            desc.Add("  4.1. ContextMenuGroup");
+            desc.Add("   4.1.1 Generate Guid");
+            desc.Add("   4.1.2 Copy selection adress");
             //EndBodyToReplace
             return string.Join("\r\n", desc.ToArray());
         }
