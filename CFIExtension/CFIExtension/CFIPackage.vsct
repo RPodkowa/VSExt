@@ -133,6 +133,7 @@
       <Button guid="guidCFIPackageCmdSet" id="CopyReleaseCommandId" priority="0x0100" type="Button">
         <Parent guid="guidCFIPackageCmdSet" id="CopyGroup" />
         <Icon guid="guidImagesTools" id="bmpCopyRelease" />
+        <CommandFlag>IconAndText</CommandFlag>
         <Strings>
           <ButtonText>CopyRelease</ButtonText>
           <ToolTipText>Copy Release</ToolTipText>
@@ -143,6 +144,7 @@
       <Button guid="guidCFIPackageCmdSet" id="RunNormalCommandId" priority="0x0100" type="Button">
         <Parent guid="guidCFIPackageCmdSet" id="RunGroup" />
         <Icon guid="guidImagesTools" id="bmpVendoNormal" />
+        <CommandFlag>IconAndText</CommandFlag>
         <Strings>
           <ButtonText>RunNormal</ButtonText>
           <ToolTipText>Run Vendo in normal mode</ToolTipText>
@@ -153,6 +155,7 @@
       <Button guid="guidCFIPackageCmdSet" id="RunReaderCommandId" priority="0x0100" type="Button">
         <Parent guid="guidCFIPackageCmdSet" id="RunGroup" />
         <Icon guid="guidImagesTools" id="bmpVendoReader" />
+        <CommandFlag>IconAndText</CommandFlag>
         <Strings>
           <ButtonText>RunReader</ButtonText>
           <ToolTipText>Run Vendo in reader mode</ToolTipText>
@@ -163,6 +166,7 @@
       <Button guid="guidCFIPackageCmdSet" id="RunRcpCommandId" priority="0x0100" type="Button">
         <Parent guid="guidCFIPackageCmdSet" id="RunGroup" />
         <Icon guid="guidImagesTools" id="bmpVendoRcp" />
+        <CommandFlag>IconAndText</CommandFlag>
         <Strings>
           <ButtonText>RunRCP</ButtonText>
           <ToolTipText>Run Vendo in RCP mode</ToolTipText>
@@ -173,6 +177,7 @@
       <Button guid="guidCFIPackageCmdSet" id="CopyRunNormalCommandId" priority="0x0100" type="Button">
         <Parent guid="guidCFIPackageCmdSet" id="CopyRunGroup" />
         <Icon guid="guidImagesTools" id="bmpCopyRunVendoNormal" />
+        <CommandFlag>IconAndText</CommandFlag>
         <Strings>
           <ButtonText>CopyRunNormal</ButtonText>
           <ToolTipText>Copy Release and run Vendo in normal mode</ToolTipText>
@@ -183,6 +188,7 @@
       <Button guid="guidCFIPackageCmdSet" id="CopyRunReaderCommandId" priority="0x0100" type="Button">
         <Parent guid="guidCFIPackageCmdSet" id="CopyRunGroup" />
         <Icon guid="guidImagesTools" id="bmpCopyRunVendoReader" />
+        <CommandFlag>IconAndText</CommandFlag>
         <Strings>
           <ButtonText>CopyRunReader</ButtonText>
           <ToolTipText>Copy Release and run Vendo in reader mode</ToolTipText>
@@ -193,6 +199,7 @@
       <Button guid="guidCFIPackageCmdSet" id="CopyRunRcpCommandId" priority="0x0100" type="Button">
         <Parent guid="guidCFIPackageCmdSet" id="CopyRunGroup" />
         <Icon guid="guidImagesTools" id="bmpCopyRunVendoRcp" />
+        <CommandFlag>IconAndText</CommandFlag>     
         <Strings>
           <ButtonText>CopyRunRCP</ButtonText>
           <ToolTipText>Copy Release and run Vendo in RCP mode</ToolTipText>
@@ -203,6 +210,7 @@
       <Button guid="guidCFIPackageCmdSet" id="UpdateAmagDataCommandId" priority="0x0100" type="Button">
         <Parent guid="guidCFIPackageCmdSet" id="UpdateAmagDataGroup" />
         <Icon guid="guidImagesTools" id="bmpUpdateAmagData" />
+        <CommandFlag>IconAndText</CommandFlag>
         <Strings>
           <ButtonText>UpdateAmag.Data</ButtonText>
           <ToolTipText>Update Amag.Data</ToolTipText>
@@ -213,6 +221,7 @@
       <Button guid="guidCFIPackageCmdSet" id="UpdateEnumsCommandCommandId" priority="0x0100" type="Button">
         <Parent guid="guidCFIPackageCmdSet" id="UpdateEnumsGroup" />
         <Icon guid="guidImagesTools" id="bmpUpdateEnums" />
+        <CommandFlag>IconAndText</CommandFlag>
         <Strings>
           <ButtonText>UpdateEnums</ButtonText>
           <ToolTipText>Update Enums</ToolTipText>
@@ -223,6 +232,7 @@
       <Button guid="guidCFIPackageCmdSet" id="OpenFileMacrosXmlCommandId" priority="0x0100" type="Button">
         <Parent guid="guidCFIPackageCmdSet" id="SubMenuOpenFileGroup" />
         <Icon guid="guidImagesFile" id="bmpOpenTxtFile" />
+        <CommandFlag>IconAndText</CommandFlag>
         <Strings>
           <ButtonText>macros.xml</ButtonText>
           <ToolTipText>Open macros.xml</ToolTipText>
@@ -233,6 +243,7 @@
       <Button guid="guidCFIPackageCmdSet" id="OpenFileChangesLstCommandId" priority="0x0100" type="Button">
         <Parent guid="guidCFIPackageCmdSet" id="SubMenuOpenFileGroup" />
         <Icon guid="guidImagesFile" id="bmpOpenTxtFile" />
+        <CommandFlag>IconAndText</CommandFlag>
         <Strings>
           <ButtonText>changes.lst</ButtonText>
           <ToolTipText>Open changes.lst</ToolTipText>
@@ -243,6 +254,7 @@
       <Button guid="guidCFIPackageCmdSet" id="OpenFileMrpChangesLstCommandId" priority="0x0100" type="Button">
         <Parent guid="guidCFIPackageCmdSet" id="SubMenuOpenFileGroup" />
         <Icon guid="guidImagesFile" id="bmpOpenTxtFile" />
+        <CommandFlag>IconAndText</CommandFlag>
         <Strings>
           <ButtonText>changes.lst (MRP)</ButtonText>
           <ToolTipText>Open changes.lst (MRP)</ToolTipText>
@@ -253,6 +265,7 @@
       <Button guid="guidCFIPackageCmdSet" id="OpenFileFactsCommandId" priority="0x0100" type="Button">
         <Parent guid="guidCFIPackageCmdSet" id="SubMenuOpenFileGroup" />
         <Icon guid="guidImagesFile" id="bmpOpenTxtFile" />
+        <CommandFlag>IconAndText</CommandFlag>
         <Strings>
           <ButtonText>facts.txt</ButtonText>
           <ToolTipText>Open facts.txt</ToolTipText>
@@ -263,6 +276,7 @@
       <Button guid="guidCFIPackageCmdSet" id="GoToIconsCommandId" priority="0x0100" type="Button">
         <Parent guid="guidCFIPackageCmdSet" id="GoToLocationGroup" />
         <Icon guid="guidImagesFile" id="bmpGoToIcons" />
+        <CommandFlag>IconAndText</CommandFlag>
         <Strings>
           <ButtonText>Icons</ButtonText>
           <ToolTipText>Go to icons location</ToolTipText>
@@ -273,6 +287,7 @@
       <Button guid="guidCFIPackageCmdSet" id="AboutCommandId" priority="0x0100" type="Button">
         <Parent guid="guidCFIPackageCmdSet" id="AboutGroup" />
         <Icon guid="guidImagesAbout" id="bmpAbout" />
+        <CommandFlag>IconAndText</CommandFlag>
         <Strings>
           <ButtonText>About</ButtonText>
           <ToolTipText>About Extension</ToolTipText>
@@ -284,6 +299,7 @@
       <Button guid="guidCFIPackageContextMenuSet" id="GuidGenerateCommandId" priority="0x0100" type="Button">
         <Parent guid="guidCFIPackageContextMenuSet" id="ContextMenuGroup" />
         <Icon guid="guidImagesTextEditor" id="bmpGenGuid" />
+        <CommandFlag>IconAndText</CommandFlag>
         <Strings>
           <ButtonText>GUUID</ButtonText>
           <ToolTipText>Generate Guid</ToolTipText>
@@ -294,124 +310,14 @@
       <Button guid="guidCFIPackageContextMenuSet" id="CopySelectionAdressCommandId" priority="0x0101" type="Button">
         <Parent guid="guidCFIPackageContextMenuSet" id="ContextMenuGroup" />
         <Icon guid="guidImagesTextEditor" id="bmpCopy" />
+        <CommandFlag>IconAndText</CommandFlag>
         <Strings>
           <ButtonText>CopySelectionAdress</ButtonText>
           <ToolTipText>Copy selection adress</ToolTipText>
           <MenuText>Copy selection adress</MenuText>
           <CommandName>CopySelectionAdress</CommandName>
         </Strings>
-      </Button>
-      <!-- ================================================ CFIToolbar ================================================ -->
-      <Button guid="guidCFIPackageCmdSet" id="CopyReleaseCommandId" priority="0x0100" type="Button">
-        <Parent guid="guidCFIPackageCmdSet" id="ToolbarCopyGroup" />
-        <Icon guid="guidImagesTools" id="bmpCopyRelease" />
-        <CommandFlag>IconAndText</CommandFlag>  
-        <Strings>
-          <ButtonText>CopyRelease</ButtonText>
-          <ToolTipText>Copy Release</ToolTipText>
-          <MenuText>Copy Release</MenuText>
-          <CommandName>CopyRelease</CommandName>
-        </Strings>
-      </Button>      
-      <Button guid="guidCFIPackageCmdSet" id="RunNormalCommandId" priority="0x0100" type="Button">
-        <Parent guid="guidCFIPackageCmdSet" id="ToolbarRunGroup" />
-        <Icon guid="guidImagesTools" id="bmpVendoNormal" />
-        <CommandFlag>IconAndText</CommandFlag>  
-        <Strings>
-          <ButtonText>RunNormal</ButtonText>
-          <ToolTipText>Run Vendo in normal mode</ToolTipText>
-          <MenuText>Run Normal</MenuText>
-          <CommandName>RunNormal</CommandName>
-        </Strings>
       </Button>  
-      <Button guid="guidCFIPackageCmdSet" id="RunReaderCommandId" priority="0x0100" type="Button">
-        <Parent guid="guidCFIPackageCmdSet" id="ToolbarRunGroup" />
-        <Icon guid="guidImagesTools" id="bmpVendoReader" />
-        <CommandFlag>IconAndText</CommandFlag>  
-        <Strings>
-          <ButtonText>RunReader</ButtonText>
-          <ToolTipText>Run Vendo in reader mode</ToolTipText>
-          <MenuText>Run Reader</MenuText>
-          <CommandName>RunReader</CommandName>
-        </Strings>
-      </Button>
-      <Button guid="guidCFIPackageCmdSet" id="CopyRunNormalCommandId" priority="0x0100" type="Button">
-        <Parent guid="guidCFIPackageCmdSet" id="ToolbarCopyRunGroup" />
-        <Icon guid="guidImagesTools" id="bmpCopyRunVendoNormal" />
-        <CommandFlag>IconAndText</CommandFlag>  
-        <Strings>
-          <ButtonText>CopyRunNormal</ButtonText>
-          <ToolTipText>Copy Release and run Vendo in normal mode</ToolTipText>
-          <MenuText>Copy and run Normal</MenuText>
-          <CommandName>CopyRunNormal</CommandName>
-        </Strings>        
-      </Button>
-      <Button guid="guidCFIPackageCmdSet" id="CopyRunReaderCommandId" priority="0x0100" type="Button">
-        <Parent guid="guidCFIPackageCmdSet" id="ToolbarCopyRunGroup" />
-        <Icon guid="guidImagesTools" id="bmpCopyRunVendoReader" />
-        <CommandFlag>IconAndText</CommandFlag>  
-        <Strings>
-          <ButtonText>CopyRunReader</ButtonText>
-          <ToolTipText>Copy Release and run Vendo in reader mode</ToolTipText>
-          <MenuText>Copy and run Reader</MenuText>
-          <CommandName>CopyRunReader</CommandName>
-        </Strings>
-      </Button>
-      <Button guid="guidCFIPackageCmdSet" id="UpdateAmagDataCommandId" priority="0x0100" type="Button">
-        <Parent guid="guidCFIPackageCmdSet" id="ToolbarUpdateAmagDataGroup" />
-        <Icon guid="guidImagesTools" id="bmpUpdateAmagData" />
-        <CommandFlag>IconAndText</CommandFlag>  
-        <Strings>
-          <ButtonText>UpdateAmag.Data</ButtonText>
-          <ToolTipText>Update Amag.Data</ToolTipText>
-          <MenuText>Update Amag.Data</MenuText>
-          <CommandName>UpdateAmag.Data</CommandName>
-        </Strings>
-      </Button>
-      <Button guid="guidCFIPackageCmdSet" id="UpdateEnumsCommandCommandId" priority="0x0100" type="Button">
-        <Parent guid="guidCFIPackageCmdSet" id="ToolbarUpdateEnumsGroup" />
-        <Icon guid="guidImagesTools" id="bmpUpdateEnums" />
-        <CommandFlag>IconAndText</CommandFlag>  
-        <Strings>
-          <ButtonText>UpdateEnums</ButtonText>
-          <ToolTipText>Update Enums</ToolTipText>
-          <MenuText>Update Enums</MenuText>
-          <CommandName>UpdateEnums</CommandName>
-        </Strings>
-      </Button>
-      <Button guid="guidCFIPackageCmdSet" id="OpenFileMacrosXmlCommandId" priority="0x0100" type="Button">
-        <Parent guid="guidCFIPackageCmdSet" id="ToolbarOpenFileGroup" />
-        <Icon guid="guidImagesFile" id="bmpOpenTxtFile" />
-        <CommandFlag>IconAndText</CommandFlag>  
-        <Strings>
-          <ButtonText>macros.xml</ButtonText>
-          <ToolTipText>Open macros.xml</ToolTipText>
-          <MenuText>Open macros.xml</MenuText>
-          <CommandName>Open macros.xml</CommandName>
-        </Strings>
-      </Button>
-      <Button guid="guidCFIPackageCmdSet" id="OpenFileChangesLstCommandId" priority="0x0100" type="Button">
-        <Parent guid="guidCFIPackageCmdSet" id="ToolbarOpenFileGroup" />
-        <Icon guid="guidImagesFile" id="bmpOpenTxtFile" />
-        <CommandFlag>IconAndText</CommandFlag>  
-        <Strings>
-          <ButtonText>changes.lst</ButtonText>
-          <ToolTipText>Open changes.lst</ToolTipText>
-          <MenuText>Open changes.lst</MenuText>
-          <CommandName>Open changes.lst</CommandName>
-        </Strings>
-      </Button>
-      <Button guid="guidCFIPackageCmdSet" id="OpenFileMrpChangesLstCommandId" priority="0x0100" type="Button">
-        <Parent guid="guidCFIPackageCmdSet" id="ToolbarOpenFileGroup" />
-        <Icon guid="guidImagesFile" id="bmpOpenTxtFile" />
-        <CommandFlag>IconAndText</CommandFlag>  
-        <Strings>
-          <ButtonText>changes.lst (MRP)</ButtonText>
-          <ToolTipText>Open changes.lst (MRP)</ToolTipText>
-          <MenuText>Open changes.lst (MRP)</MenuText>
-          <CommandName>Open changes.lst (MRP)</CommandName>
-        </Strings>
-      </Button> 
     </Buttons>
 
     <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
@@ -428,6 +334,27 @@
     </Bitmaps>
   </Commands>
 
+  <CommandPlacements>
+    <CommandPlacement guid="guidCFIPackageCmdSet" id="CopyReleaseCommandId" priority="0x0100">
+      <Parent guid="guidCFIPackageCmdSet" id="ToolbarCopyGroup" />
+    </CommandPlacement>
+    <CommandPlacement guid="guidCFIPackageCmdSet" id="RunNormalCommandId" priority="0x0100">
+      <Parent guid="guidCFIPackageCmdSet" id="ToolbarRunGroup" />
+    </CommandPlacement>
+    <CommandPlacement guid="guidCFIPackageCmdSet" id="RunReaderCommandId" priority="0x0101">
+      <Parent guid="guidCFIPackageCmdSet" id="ToolbarRunGroup" />
+    </CommandPlacement>
+    <CommandPlacement guid="guidCFIPackageCmdSet" id="CopyRunNormalCommandId" priority="0x0100">
+      <Parent guid="guidCFIPackageCmdSet" id="ToolbarCopyRunGroup" />
+    </CommandPlacement>
+    <CommandPlacement guid="guidCFIPackageCmdSet" id="CopyRunReaderCommandId" priority="0x0101">
+      <Parent guid="guidCFIPackageCmdSet" id="ToolbarCopyRunGroup" />
+    </CommandPlacement>
+    <CommandPlacement guid="guidCFIPackageCmdSet" id="UpdateAmagDataCommandId" priority="0x0100">
+      <Parent guid="guidCFIPackageCmdSet" id="ToolbarUpdateAmagDataGroup" />
+    </CommandPlacement>    
+  </CommandPlacements>
+  
   <Symbols>
     <!-- This is the package guid. -->
     <GuidSymbol name="guidCFIPackage" value="{9f3b370f-1249-48ab-8882-016fd64a59e9}" />
@@ -452,10 +379,7 @@
       <IDSymbol name="ToolbarCopyGroup" value="0x3001" />   
       <IDSymbol name="ToolbarRunGroup" value="0x3002" />
       <IDSymbol name="ToolbarCopyRunGroup" value="0x3003" />
-      <IDSymbol name="ToolbarUpdateAmagDataGroup" value="0x3004" />
-      <IDSymbol name="ToolbarUpdateEnumsGroup" value="0x3005" />      
-      <IDSymbol name="ToolbarOpenFileGroup" value="0x3006" />  
-      <IDSymbol name="ToolbarGoToLocationGroup" value="0x3007" />      
+      <IDSymbol name="ToolbarUpdateAmagDataGroup" value="0x3004" />      
         
       <IDSymbol name="CopyReleaseCommandId" value="0x0100" />
       <IDSymbol name="RunNormalCommandId" value="0x0101" />
