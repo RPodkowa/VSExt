@@ -106,15 +106,6 @@
       <Group guid="guidCFIPackageCmdSet" id="ToolbarUpdateAmagDataGroup" priority="0x0603">
         <Parent guid="guidCFIPackageCmdSet" id="CFIToolbar" />
       </Group>
-      <Group guid="guidCFIPackageCmdSet" id="ToolbarUpdateEnumsGroup" priority="0x0604">
-        <Parent guid="guidCFIPackageCmdSet" id="CFIToolbar" />
-      </Group>
-      <Group guid="guidCFIPackageCmdSet" id="ToolbarOpenFileGroup" priority="0x0605">
-        <Parent guid="guidCFIPackageCmdSet" id="CFIToolbar" />
-      </Group>
-      <Group guid="guidCFIPackageCmdSet" id="ToolbarGoToLocationGroup" priority="0x0606">
-        <Parent guid="guidCFIPackageCmdSet" id="CFIToolbar" />
-      </Group> 
     </Groups>
 
     <!--Buttons section. -->
