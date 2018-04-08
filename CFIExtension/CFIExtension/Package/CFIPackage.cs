@@ -84,25 +84,7 @@ namespace CFIExtension
         protected override void Initialize()
         {
             base.Initialize();
-            CopyReleaseCommand.Initialize(this);
-            RunNormalCommand.Initialize(this);
-            RunReaderCommand.Initialize(this);
-            RunRcpCommand.Initialize(this);
-            OpenMacrosXmlCommand.Initialize(this);
-            OpenFileChangesLstCommand.Initialize(this);
-            OpenFileMrpChangesLstCommand.Initialize(this);
-            OpenFileFactsCommand.Initialize(this);
-            CopyRunNormalCommand.Initialize(this);
-            CopyRunReaderCommand.Initialize(this);
-            CopyRunRcpCommand.Initialize(this);
-            UpdateAmagDataCommand.Initialize(this);
-            AboutCommand.Initialize(this);
-            GuidGenerateCommand.Initialize(this);
-            UpdateEnumsCommand.Initialize(this);
-            GoToIconsCommand.Initialize(this);
-            RunFromPeposNormalCommand.Initialize(this);
-            RunFromPeposReaderCommand.Initialize(this);
-            CopySelectionAdressCommand.Initialize(this);
+            CommandsProvider.Initialize(this);
         }
 
         #endregion

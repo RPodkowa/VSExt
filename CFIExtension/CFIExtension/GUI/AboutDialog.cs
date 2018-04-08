@@ -12,7 +12,12 @@ namespace CFIExtension
 {
     partial class AboutDialog : Form
     {
-        public AboutDialog()
+        public static void ShowAboutDialog()
+        {
+            var ad = new AboutDialog();
+            ad.ShowDialog();
+        }
+        private AboutDialog()
         {
             InitializeComponent();
             this.Text = String.Format("About {0}", AssemblyTitle);
@@ -47,7 +52,7 @@ namespace CFIExtension
             var assemblyVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             string ret = String.Format("Version {0}", assemblyVersion);
             //VersionBodyToReplace
-            ret+=".20180405";
+            ret+=".20180408";
             //EndVersionBodyToReplace
             return ret;
         }

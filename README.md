@@ -22,6 +22,5 @@ Do zrobienia:
 4. Dodanie funkcji uruchomiania z repozytorium
 5. Poprawna implementacja obslugi RCP
 6. Wykorzystanie VendoHelpera
-7. Metoda kopiowania adresu zaznaczenia (plik/linia)
 8. Mozliwosc definiowania sciezek/plikow do otwarcia
 9. Warunkowosc w menu

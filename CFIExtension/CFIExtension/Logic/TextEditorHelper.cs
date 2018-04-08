@@ -16,12 +16,18 @@ namespace CFIExtension.Logic
         private const int standardFindOptions = (int)(vsFindOptions.vsFindOptionsNone);
         private DTE2 dte;
 
-        public TextEditorHelper(Package package)
+        private TextEditorHelper(Package package)
         {            
             dte = ((IServiceProvider)package).GetService(typeof(DTE)) as DTE2;     
         }
 
-        public void CopySelectionAdress()
+        public static void CopySelectionAdress(Package package)
+        {
+            var teh = new TextEditorHelper(package);
+            teh.CopySelectionAdress();
+        }
+
+        private void CopySelectionAdress()
         {
             Clipboard.SetText(GetSelectionAdress());
         }
@@ -42,7 +48,13 @@ namespace CFIExtension.Logic
             return ret;
         }
 
-        public void InsertGuidCPP()
+        public static void InsertGuidCPP(Package package)
+        {
+            var teh = new TextEditorHelper(package);
+            teh.InsertGuidCPP();
+        }
+
+        private void InsertGuidCPP()
         {
             TextDocument doc = (TextDocument)(dte.ActiveDocument.Object("TextDocument"));
             

@@ -57,7 +57,7 @@ namespace CFIExtension.Logic
         private OutputWriter outputWriter;
         private IServiceProvider serviceProvider;
         
-        public ToolsHelper(Package package)
+        private ToolsHelper(Package package)
         {
             serviceProvider = (IServiceProvider)package;
             DTE dte = (DTE)(serviceProvider).GetService(typeof(DTE));
@@ -65,8 +65,14 @@ namespace CFIExtension.Logic
             solutionDir = Path.GetDirectoryName(dte.Solution.FullName);
             outputWriter = new OutputWriter("CFI", new Guid("0F44E2D1-F5FA-4d2d-AB30-22BE8ECD9789"));
         }
-        
-        public async void CopyAsync()
+
+        public static void CopyRelease(Package package)
+        {
+            var vh = new ToolsHelper(package);
+            vh.CopyAsync();
+        }
+
+        private async void CopyAsync()
         {
             var ret = await TaksCopy();
 
@@ -117,7 +123,13 @@ namespace CFIExtension.Logic
             return new ToolsHelperResult(true, status);
         }
 
-        public async void RunAsync(string mode)
+        public static void Run(Package package, string mode)
+        {
+            var vh = new ToolsHelper(package);
+            vh.RunAsync(mode);
+        }
+
+        private async void RunAsync(string mode)
         {
             var ret = await TaksRun(mode);
             ret.ShowIfError(serviceProvider);
@@ -137,7 +149,13 @@ namespace CFIExtension.Logic
             return new ToolsHelperResult(StartLongProcess(program, arguments));
         }
 
-        public async void CopyRunAsync(string mode)
+        public static void CopyRun(Package package, string mode)
+        {
+            var vh = new ToolsHelper(package);
+            vh.CopyRunAsync(mode);
+        }
+
+        private async void CopyRunAsync(string mode)
         {
             var ret = await TaksCopyRun(mode);
             ret.ShowIfError(serviceProvider);
@@ -156,7 +174,13 @@ namespace CFIExtension.Logic
             return Run(mode);
         }
 
-        public async void UpdateAmagDataAsync()
+        public static void UpdateAmagData(Package package)
+        {
+            var vh = new ToolsHelper(package);
+            vh.UpdateAmagDataAsync();
+        }
+
+        private async void UpdateAmagDataAsync()
         {
             bool ret = await TaksUpdateAmagData();
         }
@@ -174,7 +198,13 @@ namespace CFIExtension.Logic
             return StartProcess(program, arguments, solutionDir, true, true);
         }
 
-        public async void ENumsAsync()
+        public static void ENums(Package package)
+        {
+            var vh = new ToolsHelper(package);
+            vh.ENumsAsync();
+        }
+
+        private async void ENumsAsync()
         {
             bool ret = await TaksENums();
         }
@@ -274,6 +304,7 @@ namespace CFIExtension.Logic
 
             return string.Join(" ", aruments.ToArray());
         }
+
         private string AddDoubleQuotes(string value)
         {
             return "\"" + value + "\"";

@@ -54,18 +54,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Commands\CopySelectionAdressCommand.cs" />
+    <Compile Include="Commands\CommandsProvider.cs" />
     <Compile Include="GUI\AboutDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\AboutDialog.Designer.cs">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Commands\AboutCommand.cs" />
-    <Compile Include="Commands\GuidGenerateCommand.cs" />
-    <Compile Include="Commands\GoToIconsCommand.cs" />
-    <Compile Include="Commands\RunFromPeposNormalCommand.cs" />
-    <Compile Include="Commands\RunFromPeposReaderCommand.cs" />
     <Compile Include="GUI\AboutDialog1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -78,20 +73,7 @@
     <Compile Include="Logic\Xml\XmlVersionInfo.cs" />
     <Compile Include="Logic\XmlSettingsReader.cs" />
     <Compile Include="Package\CFIPackage.cs" />
-    <Compile Include="Commands\CopyReleaseCommand.cs" />
-    <Compile Include="Commands\OpenFileChangesLstCommand.cs" />
-    <Compile Include="Commands\OpenFileMacrosXmlCommand.cs" />
-    <Compile Include="Commands\OpenFileFactsCommand.cs" />
-    <Compile Include="Commands\OpenFileMrpChangesLstCommand.cs" />
-    <Compile Include="Commands\CopyRunNormalCommand.cs" />
-    <Compile Include="Commands\CopyRunRcpCommand.cs" />
-    <Compile Include="Commands\CopyRunReaderCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Commands\RunNormalCommand.cs" />
-    <Compile Include="Commands\RunRcpCommand.cs" />
-    <Compile Include="Commands\RunReaderCommand.cs" />
-    <Compile Include="Commands\UpdateAmagDataCommand.cs" />
-    <Compile Include="Commands\UpdateEnumsCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -107,24 +89,12 @@
       <SubType>Designer</SubType>
       <Generator>VsctGenerator</Generator>
     </VSCTCompile>
-    <Content Include="Resources\CopySelectionAdressCommand.png" />
-    <Content Include="Resources\RunFromPeposReaderCommand.png" />
-    <Content Include="Resources\RunFromPeposNormalCommand.png" />
     <Content Include="Resources\AboutCommand.png" />
-    <Content Include="Resources\CopyRunNormalCommand.png" />
-    <Content Include="Resources\CopyRunRcpCommand.png" />
-    <Content Include="Resources\CopyRunReaderCommand.png" />
-    <Content Include="Resources\GoToIconsCommand.png" />
-    <Content Include="Resources\GuidGenerateCommand.png" />
-    <Content Include="Resources\OpenFileCommand.png" />
     <Content Include="index.html" />
     <Content Include="Resources\CFIPackage.ico" />
-    <Content Include="Resources\CopyReleaseCommand.png" />
-    <Content Include="Resources\RunNormalCommand.png" />
-    <Content Include="Resources\RunRcpCommand.png" />
-    <Content Include="Resources\RunReaderCommand.png" />
-    <Content Include="Resources\UpdateAmagDataCommand.png" />
-    <Content Include="Resources\UpdateEnumsCommand.png" />
+    <Content Include="Resources\FileCommands.png" />
+    <Content Include="Resources\TextEditorCommands.png" />
+    <Content Include="Resources\ToolsCommands.png" />
     <Content Include="stylesheet.css" />
   </ItemGroup>
   <ItemGroup>

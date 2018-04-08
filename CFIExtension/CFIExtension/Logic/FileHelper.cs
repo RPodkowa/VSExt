@@ -14,18 +14,31 @@ namespace CFIExtension.Logic
         private string solutionDir;
         private string notepadPath;
 
-        public FileHelper(Package package)
+        private FileHelper(Package package)
         {
             DTE dte = (DTE)((IServiceProvider)package).GetService(typeof(DTE));
             solutionDir = System.IO.Path.GetDirectoryName(dte.Solution.FullName);
             notepadPath = (package as CFIPackage).OptionNotepadPath;
         }
 
-        public void OpenNotepad(string fileName)
+        public static void OpenNotepad(Package package, string fileName)
+        {
+            var fh = new FileHelper(package);
+            fh.OpenNotepad(fileName);
+        }
+
+        private void OpenNotepad(string fileName)
         {
             System.Diagnostics.Process.Start(notepadPath, GetFileFullPath(fileName));
         }
-        public void GoToLocation(string location)
+
+        public static void GoToLocation(Package package, string location)
+        {
+            var fh = new FileHelper(package);
+            fh.GoToLocation(location);
+        }
+
+        private void GoToLocation(string location)
         {
             System.Diagnostics.Process.Start(GetFileFullPath(location));
         }
