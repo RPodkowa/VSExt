@@ -52,7 +52,7 @@ namespace CFIExtension
             var assemblyVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             string ret = String.Format("Version {0}", assemblyVersion);
             //VersionBodyToReplace
-            ret+=".20180408";
+            ret+=".20200310";
             //EndVersionBodyToReplace
             return ret;
         }
@@ -70,16 +70,19 @@ namespace CFIExtension
             desc.Add(" 5. Copy Release and run Vendo in normal mode");
             desc.Add(" 6. Copy Release and run Vendo in reader mode");
             desc.Add(" 7. Copy Release and run Vendo in RCP mode");
-            desc.Add(" 8. Update Amag.Data");
-            desc.Add(" 9. Update Enums");
-            desc.Add(" 10. Open macros.xml");
-            desc.Add(" 11. Open changes.lst");
-            desc.Add(" 12. Open changes.lst (MRP)");
-            desc.Add(" 13. Open facts.txt");
-            desc.Add(" 14. Go to icons location");
-            desc.Add(" 15. About Extension");
-            desc.Add(" 16. Generate Guid");
-            desc.Add(" 17. Copy selection adress");
+            desc.Add(" 8. Run repository Vendo in normal mode");
+            desc.Add(" 9. Run repository Vendo in reader mode");
+            desc.Add(" 10. Run repository Vendo in RCP mode");
+            desc.Add(" 11. Update Amag.Data");
+            desc.Add(" 12. Update Enums");
+            desc.Add(" 13. macros.xml");
+            desc.Add(" 14. changes.lst");
+            desc.Add(" 15. changes.lst (MRP)");
+            desc.Add(" 16. facts.txt");
+            desc.Add(" 17. Icons");
+            desc.Add(" 18. About Extension");
+            desc.Add(" 19. Generate Guid");
+            desc.Add(" 20. Copy selection adress");
             //EndBodyToReplace
             return string.Join("\r\n", desc.ToArray());
         }

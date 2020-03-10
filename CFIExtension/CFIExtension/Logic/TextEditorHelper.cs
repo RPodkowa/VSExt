@@ -1,8 +1,11 @@
 ﻿using EnvDTE;
 using EnvDTE80;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.TableControl;
+using Microsoft.VisualStudio.Shell.TableManager;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +15,7 @@ namespace CFIExtension.Logic
 {
     public class TextEditorHelper
     {
+        //C:\Users\Radek\AppData\Local\Temp\.NETFramework,Version=v4.5.AssemblyAttributes.cpp
         private const string mainCodePart = "\\Amag\\";
         private const int standardFindOptions = (int)(vsFindOptions.vsFindOptionsNone);
         private DTE2 dte;
@@ -19,6 +23,12 @@ namespace CFIExtension.Logic
         private TextEditorHelper(Package package)
         {            
             dte = ((IServiceProvider)package).GetService(typeof(DTE)) as DTE2;     
+        }      
+
+        public static string getProjectName(ITableEntryHandle handle)
+        {
+            handle.TryGetValue(StandardTableKeyNames.ProjectName, out string projectname);             
+            return projectname;
         }
 
         public static void CopySelectionAdress(Package package)
@@ -41,8 +51,7 @@ namespace CFIExtension.Logic
 
             //Line number
             TextDocument doc = (TextDocument)(dte.ActiveDocument.Object("TextDocument"));
-            var lnNumber = doc.Selection.CurrentLine;
-            var sel = doc.Selection;
+            var lnNumber = doc.Selection.CurrentLine;            
             //
             ret += string.Format("{0} (linia: {1})", fileName, lnNumber);
             return ret;
@@ -67,7 +76,7 @@ namespace CFIExtension.Logic
             if (cursor == null)
             {
                 cursor = FindLast(doc, "#include");
-                isFirst = false;
+                isFirst = true;
             }
 
             if (cursor == null)

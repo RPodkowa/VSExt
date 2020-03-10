@@ -52,7 +52,7 @@ namespace CFIExtension.Logic
                 case "changes.lst": ret += @"\Amag\sql\changes.lst"; break;
                 case "changes.lst(MRP)": ret += @"\Amag\sql\mrp\changes.lst"; break;
                 case "facts.txt": ret += @"\Amag\Amag.App\Resources\facts.txt"; break;
-                case "icons": ret += @"\Amag\Amag.UI.Core\Resources"; break;
+                case "icons": ret += @"\Amag\Amag.UI.Core\Resources\Icons"; break;
                 default:
                     return "";
             }

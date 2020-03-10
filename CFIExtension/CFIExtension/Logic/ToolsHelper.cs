@@ -144,7 +144,7 @@ namespace CFIExtension.Logic
         {
             var version = XmlSettingsReader.GetVersionInfo(solutionDir);
 
-            string program = solutionDir + @"\Release\Amag.App.exe";
+            string program = solutionDir + @"\Release\" + GetApplicationName(mode);
             string arguments = GetRunArguments(version, mode);
             return new ToolsHelperResult(StartLongProcess(program, arguments));
         }
@@ -174,6 +174,37 @@ namespace CFIExtension.Logic
             return Run(mode);
         }
 
+        public static void RunRepository(Package package, string mode)
+        {
+            var vh = new ToolsHelper(package);
+            vh.RunRepositoryAsync(mode);
+        }
+
+        private async void RunRepositoryAsync(string mode)
+        {
+            var ret = await TaksRunRepository(mode);
+            ret.ShowIfError(serviceProvider);
+        }
+
+        private Task<ToolsHelperResult> TaksRunRepository(string mode)
+        {
+            return Task<ToolsHelperResult>.Factory.StartNew(() => RunRepository(mode));
+        }
+
+        private ToolsHelperResult RunRepository(string mode)
+        {
+            var version = XmlSettingsReader.GetVersionInfo(solutionDir);
+
+            string program = GetRepositoryExe(version, mode);
+            if (string.IsNullOrEmpty(program))
+                return new ToolsHelperResult(false, "Brak repozytorium!"); ;
+
+
+
+            string arguments = GetRunArguments(version, mode);
+            return new ToolsHelperResult(StartLongProcess(program, arguments));
+        }
+
         public static void UpdateAmagData(Package package)
         {
             var vh = new ToolsHelper(package);
@@ -195,7 +226,106 @@ namespace CFIExtension.Logic
             string toolsPath = solutionDir + @"\#Tools\";
             string program = toolsPath + "Update Amag.Data.bat";
             string arguments = solutionDir;
-            return StartProcess(program, arguments, solutionDir, true, true);
+
+            //DTE dte2 = (DTE)(serviceProvider).GetService(typeof(DTE));
+            //var files = new List<string>();
+
+            //List<string> returnValue = new List<string>();
+            //foreach (Project project in dte2.Solution.Projects)
+            //{
+            //    files.Add(project.UniqueName);
+            //    string Name = project.Name;
+            //    string FileName = project.FileName;
+            //    string Kind = project.Kind;
+            //    string UniqueName = project.UniqueName;
+            //    string ExtenderCATID = project.ExtenderCATID;
+            //    string FullName = project.FullName;
+            //    if (Name != "Logic") continue;
+
+
+            //    returnValue.AddRange(GetAllProjectFiles(Name, project.ProjectItems));
+            //}
+
+            if (!StartProcess(program, arguments, solutionDir, true, true))
+                return false;
+
+            return AfterUpdateAmagData();
+        }
+
+        public static List<string> GetAllProjectFiles(string sufix, ProjectItems projectItems)
+        {
+
+            //dte2.Solution.AddFromFile(@"D:\Projects\Vendo\Master\Amag\Amag.Data\Config\Map\rp_test_tab.xml");
+
+            List<string> returnValue = new List<string>();
+            
+            if (projectItems !=null)
+            {
+                foreach (ProjectItem projectItem in projectItems)
+                {
+                    var sufix2 = sufix+":" + projectItems.Count+ " ";
+                    var emems = projectItems.Count;
+                    var emems2 = projectItem.FileCount;
+                    for (short i = 1; i <= projectItem.FileCount; i++)
+                    {
+                        string fileName = projectItem.FileNames[i];
+                        if (fileName == null) continue;
+
+                        fileName = sufix2 + fileName;
+                        returnValue.Add(fileName);
+                    }
+                    
+                    string piName = projectItem.Name;
+
+                    if (piName == "Map")
+                    {
+                        projectItem.ProjectItems.AddFromFile(@"D:\Projects\Vendo\Master\Amag\Amag.Data\Config\Map\rp_test_tab.xml");
+                        projectItem.Save();
+                    }
+
+                    returnValue.AddRange(GetAllProjectFiles(piName, projectItem.ProjectItems));
+
+                    var sp = projectItem.SubProject;
+                    if (sp!=null)
+                    {
+                        string Name = sp.Name;
+                        string FileName = sp.FileName;
+                        string Kind = sp.Kind;
+                        string UniqueName = sp.UniqueName;
+                        string ExtenderCATID = sp.ExtenderCATID;
+                        string FullName = sp.FullName;
+
+                        if (Name != "Amag.Data")
+                            continue;
+                        
+                        returnValue.AddRange(GetAllProjectFiles(sufix, sp.ProjectItems));
+                    }
+                }
+            }
+
+            return returnValue;
+        }
+
+        private bool AfterUpdateAmagData()
+        {
+            var txt = outputWriter.GetText();
+
+            //11:57:54.562: 	File saved: D:\Projects\Vendo\Master\#Tools\..\Amag\Amag.Data\Config\Map\rp_test_tab.xml
+            var files = new List<string>();
+            foreach (var line in txt)
+            {
+                if (line.Contains("File saved:"))
+                {
+                    var file = line;                                        
+                    var startIndex = file.IndexOf("\\Amag\\");
+                    file = solutionDir + file.Substring(startIndex);
+                    files.Add(file);
+                }
+            }
+
+
+
+            return true;
         }
 
         public static void ENums(Package package)
@@ -301,8 +431,25 @@ namespace CFIExtension.Logic
             aruments.Add(AddDoubleQuotes(version.Vendo.Password));
             aruments.Add("-pass_not_enc");
             aruments.Add("-ignorepatchcheck");
+            aruments.Add("-logs");
+            aruments.Add("-safemode");
 
             return string.Join(" ", aruments.ToArray());
+        }
+
+        private string GetRepositoryExe(Xml.Version version, string mode)
+        {
+            if (string.IsNullOrEmpty(version.Repository))
+                return null;
+
+            return version.Repository + @"\"+ GetApplicationName(mode);
+        }
+
+        private string GetApplicationName(string mode)
+        {
+            string ret = "Amag.App.exe";
+            if (mode == "rcp") ret = "VendoRCP.exe";
+            return ret;
         }
 
         private string AddDoubleQuotes(string value)
